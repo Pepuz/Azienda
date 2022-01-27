@@ -25,3 +25,4 @@ if ($result == null) {
 }
 
 echo json_encode($riunioni);
+//belandi
