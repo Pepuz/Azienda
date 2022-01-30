@@ -8,7 +8,7 @@ $risultato = array("msg" => "", "status" => "ok", "contenuto" => "");
 
 $email = $_SESSION['email'];
 
-$query = "SELECT partecipazione, Data, Ora, Salariunioni, tema FROM partecipa, riunioni WHERE partecipante='$email' and id = riunione";
+$query = "SELECT partecipazione, Data, Ora, Salariunioni, tema, id FROM partecipa, riunioni WHERE partecipante='$email' and id = riunione";
 $result = $cid->query($query);
 
 if ($result == null) {
@@ -18,11 +18,10 @@ if ($result == null) {
     $riunioni = array();
 
     while ($row = $result->fetch_assoc()) {
-        $riunioni = $row;
+        $riunioni[] = $row;
     }
 
     $risultato["contenuto"] = $riunioni;
 }
 
 echo json_encode($riunioni);
-//belandi

@@ -103,8 +103,7 @@ $email = $_SESSION['email'];
     ***********************************-->
     <script src="plugins/common/common.min.js"></script>
     <script src="js/custom.min.js"></script>
-
-
+    <script src="js/callriunioni.js"></script>
 
 </body>
 
