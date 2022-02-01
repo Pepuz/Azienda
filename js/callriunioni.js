@@ -35,7 +35,7 @@ function caricaRiunioni() {
                     const tema = document.createElement('h6');
                     const dettagli = document.createElement('p');
                     tema.innerText = risposta[i].tema;
-                    dettagli.innerText = risposta[i].Data + ' ' + risposta[i].Ora + ' ' + risposta[i].Salariunioni;
+                    dettagli.innerText = risposta[i].data_riunione + ' ' + risposta[i].ora + ' ' + risposta[i].salariunioni;
                     li.appendChild(tema);
                     li.appendChild(dettagli);
                     riunioni.appendChild(li);

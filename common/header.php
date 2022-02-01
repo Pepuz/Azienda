@@ -9,7 +9,6 @@
         </a>
     </div>
 </div>
-
 <div class="header">
     <div class="header-content clearfix">
         <div class="header-right">
@@ -22,15 +21,11 @@
                     <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
                         <div class="dropdown-content-heading d-flex justify-content-between">
                             <span class="">Notifiche</span>
-
                         </div>
                         <div class="dropdown-content-body" id="notifica">
-
-
                         </div>
                     </div>
                 </li>
-
                 <li class="icons dropdown">
                     <div class="user-img c-pointer position-relative" data-toggle="dropdown">
                         <img src="images/user.png" height="40" width="40" alt="">

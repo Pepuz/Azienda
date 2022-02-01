@@ -8,7 +8,11 @@ $risultato = array("msg" => "", "status" => "ok", "contenuto" => "");
 
 $email = $_SESSION['email'];
 
-$query = "SELECT partecipazione, Data, Ora, Salariunioni, tema, id FROM partecipa, riunioni WHERE partecipante='$email' and id = riunione";
+$query = "SELECT partecipazione, data_riunione, ora, salariunioni, tema, id 
+FROM partecipa, riunioni 
+WHERE partecipante='$email' and id = riunione and CURDATE() <= data_riunione and partecipazione = null
+ORDER BY data_riunione, ora";
+
 $result = $cid->query($query);
 
 if ($result == null) {
