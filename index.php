@@ -102,6 +102,7 @@ $email = $_SESSION['email'];
         Scripts
     ***********************************-->
     <script src="plugins/common/common.min.js"></script>
+    <script src="plugins/metismenu/js/metisMenu.min.js"></script>
     <script src="js/custom.min.js"></script>
 
 
