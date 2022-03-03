@@ -54,13 +54,11 @@ $result = $cid->query($query);
                         </table>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <?php
-                    if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore') {
-                        echo '<button type="button" class="btn btn-primary">Crea Riunione</button>';
-                    }
-                    ?>
-                </div>
+                <?php
+		if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore') {
+			echo "<div class='card-footer'><button type='button' class='btn btn-primary'>Crea Riunione</button></div>";		
+                }
+                ?>
             </div>
         </div>
     </div>
