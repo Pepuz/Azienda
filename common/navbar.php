@@ -10,12 +10,22 @@
                 <ul aria-expanded="false">
                     <li class="active"><a class="active" href="index.php?op=riunioni">Lista Riunioni</a></li>
                 </ul>
+                <?php
+                if $_SESSION['ruolo']=="direttore" || $_SESSION['autorizzato']!=NULL {
+                    echo "<ul aria-expanded=\"false\"><li class=\"active\"><a class=\"active\" href=\"index.php?op=riunioni\">Crea Riunione</a></li></ul>";
+                }
+                ?>
             </li>
             <li>
                 <a href="index.php" aria-expanded="false">
                     <i class="icon-envelope menu-icon"></i><span class="nav-text">Inviti</span>
                 </a>
             </li>
+            <?php
+            if $_SESSION['ruolo']=="direttore" {
+                echo "<li><a href=\"index.php\" aria-expanded=\"false\"><i class=\"icon-envelope menu-icon\"></i><span class=\"nav-text\">Autorizza</span></a></li>";
+            }
+            ?>
             <li>
                 <a href="index.php" aria-expanded="false">
                     <i class="icon-badge menu-icon"></i><span class="nav-text">Sale Riunioni</span>
