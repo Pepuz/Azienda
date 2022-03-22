@@ -30,6 +30,7 @@ if($count==1){
     }
 
 	$_SESSION['ruolo'] = $row['ruolo'];
+	$_SESSION['autorizzato'] = $row['data_autorizzazione'];
 	$_SESSION['nome'] = $row['nome'];
 	$_SESSION['cognome'] = $row['cognome'];
 	header("location:../index.php");
