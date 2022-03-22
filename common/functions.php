@@ -44,7 +44,7 @@ function activeMeetings($cid,$email)
 	$active_meetings =array();
 	while($row = $result->fetch_assoc())
 	{
-	 $array[] = $result;
+	 $active_meetings[] = $result;
 	}
 	      
 	return $active_meetings;
