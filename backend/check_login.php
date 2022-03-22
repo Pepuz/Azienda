@@ -9,8 +9,7 @@ $email = $_POST['email'];
 $pwd = $_POST['pwd']; 
 $error = "Email o Password errata";
 
-$query = "SELECT * FROM utenti WHERE email='$email' and password='$pwd'";
-$result = $cid->query($query);
+$result=isUser($cid,$email,$pwd);
 
 // num_rows is counting table rows
 $count = $result->num_rows;
