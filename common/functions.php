@@ -42,12 +42,12 @@ function activeMeetings($cid,$email)
 	$result = $cid->query($query);
 	
 	$active_meetings =array();
-	while($row = $result->fetch_assoc()
+	while($row = $result->fetch_assoc())
 	{
-	$array[] = $result;
+	 $array[] = $result;
 	}
 	      
-	return $active_meetings
+	return $active_meetings;
 }
 	    
 	 
