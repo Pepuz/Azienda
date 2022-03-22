@@ -7,11 +7,7 @@ if (!isset($_SESSION['email'])) {
 
 $email = $_SESSION['email'];
 
-$query = "SELECT tema, Data, Ora, Salariunioni FROM partecipa JOIN riunioni 
-		WHERE riunione=id AND partecipante= '$email'";
-
-$result = $cid->query($query);
-
+$result = Meetings($cid,$email);
 ?>
 
 <!--**********************************
