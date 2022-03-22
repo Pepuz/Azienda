@@ -8,6 +8,8 @@ if (!isset($_SESSION['email'])) {
 $email = $_SESSION['email'];
 
 $result = Meetings($cid,$email);
+
+
 ?>
 
 <!--**********************************
@@ -36,6 +38,7 @@ $result = Meetings($cid,$email);
                             <tbody>
                                 <?php
                                 while ($row = $result->fetch_assoc()) {
+				   
                                     echo "<tr>";
                                     echo "<td>" . $row['tema'] . "</td>";
                                     echo "<td>" . $row['Salariunioni'] . "</td>";
