@@ -3,6 +3,7 @@
 session_start();
 
 require "../common/connection.php";
+require "../common/functions.php";
 
 // username and password sent from form 
 $email = $_POST['email']; 
