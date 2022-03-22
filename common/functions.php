@@ -24,12 +24,23 @@ function nextMeeting($cid,$email)
 
 function Meetings($cid,$email)
 {
-  $query = "SELECT tema, Data, Ora, Salariunioni FROM partecipa JOIN riunioni 
+  $query = "SELECT id, tema, Data, Ora, Salariunioni FROM partecipa JOIN riunioni 
 		        WHERE riunione=id AND partecipante= '$email'";
 
   $result = $cid->query($query);
   
   return $result;
 }
+
+function activeMeetings($cid,$email)
+{
+	$query = "SELECT * FROM partecipa JOIN riunioni 
+            WHERE riunione=id AND partecipante= '$email'
+            AND Data > CURDATE()
+            OR (Data = CURDATE() AND Ora > TIME(NOW()))";
+	
+}
+	    
+	 
   
 
