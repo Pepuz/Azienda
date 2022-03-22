@@ -42,9 +42,9 @@ $status="";
                                 <?php
                                 while ($row = $result->fetch_assoc()) {
 				    if (in_array($row['id'],$active_meetings)) {
-					    $status = "Programmata"
+					    $status = "Programmata";
 				    } else {
-					    $status = "Terminata"
+					    $status = "Terminata";
 				    }
                                     echo "<tr>";
                                     echo "<td>" . $row['tema'] . "</td>";
@@ -61,7 +61,7 @@ $status="";
                     </div>
                 </div>
                 <?php
-		if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore') || $_SESSION['autorizzato']!=NULL {
+		if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore') {
 			echo "<div class='card-footer'><button type='button' class='btn btn-primary'>Crea Riunione</button></div>";		
                 }
                 ?>
