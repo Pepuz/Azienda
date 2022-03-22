@@ -51,7 +51,7 @@ $result = Meetings($cid,$email);
                     </div>
                 </div>
                 <?php
-		if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore') {
+		if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore') || $_SESSION['autorizzato']!=NULL {
 			echo "<div class='card-footer'><button type='button' class='btn btn-primary'>Crea Riunione</button></div>";		
                 }
                 ?>
