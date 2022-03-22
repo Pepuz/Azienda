@@ -7,7 +7,7 @@ if (!isset($_SESSION['email'])) {
 
 $email = $_SESSION['email'];
 
-$result = Meetings($cid,$email);
+$result = isMeetings($cid,$email);
 
 $active_meetings = activeMeetings($cid,$email);
 	
