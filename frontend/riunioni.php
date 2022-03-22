@@ -9,6 +9,8 @@ $email = $_SESSION['email'];
 
 $result = Meetings($cid,$email);
 
+$active_meetings = activeMeetings($cid,$email)
+$status=""
 
 ?>
 
@@ -38,13 +40,17 @@ $result = Meetings($cid,$email);
                             <tbody>
                                 <?php
                                 while ($row = $result->fetch_assoc()) {
-				   
+				    if (in_array($row['id'],$active_meetings)) {
+					    $status = "Programmata"
+				    } else {
+					    $status = "Terminata"
+				    }
                                     echo "<tr>";
                                     echo "<td>" . $row['tema'] . "</td>";
                                     echo "<td>" . $row['Salariunioni'] . "</td>";
                                     echo "<td>" . $row['Data'] . "</td>";
                                     echo "<td>" . $row['Ora'] . "</td>";
-                                    echo "<td><span class=\"label label-pill label-success\">Programmata</span></td>";
+                                    echo "<td><span class=\"label label-pill label-success\">$status</span></td>";
                                     echo "<td><button type=\"button\" class=\"btn mb-1 btn-danger\">Disiscrivi</button></td>";
                                     echo "</tr>";
                                 }
