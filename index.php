@@ -5,6 +5,7 @@
 session_set_cookie_params(0);
 session_start();
 require "common/connection.php";
+require "common/functions.php";
 
 // If the session variable is empty, this
 // means the user is yet to login
