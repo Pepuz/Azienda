@@ -49,7 +49,8 @@ function activeMeetings($cid,$email)
 	      
 	return $active_meetings;
 }
-	    
+
+?>
 	 
   
 
