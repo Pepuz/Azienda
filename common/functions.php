@@ -22,7 +22,7 @@ function nextMeeting($cid,$email)
   return $result;
 }
 
-function Meetings($cid,$email)
+function listMeetings($cid,$email)
 {
   $query = "SELECT id, tema, Data, Ora, Salariunioni FROM partecipa JOIN riunioni 
 		        WHERE riunione=id AND partecipante= '$email'";
