@@ -9,8 +9,9 @@ $email = $_SESSION['email'];
 
 $result = Meetings($cid,$email);
 
-$active_meetings = activeMeetings($cid,$email)
-$status=""
+$active_meetings = activeMeetings($cid,$email);
+	
+$status="";
 
 ?>
 
