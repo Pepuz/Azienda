@@ -11,7 +11,7 @@
                     <li class="active"><a class="active" href="index.php?op=riunioni">Lista Riunioni</a></li>
                 </ul>
                 <?php
-                if $_SESSION['ruolo']=="direttore" || $_SESSION['autorizzato']!=NULL {
+                if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore') {
                     echo "<ul aria-expanded=\"false\"><li class=\"active\"><a class=\"active\" href=\"index.php?op=riunioni\">Crea Riunione</a></li></ul>";
                 }
                 ?>
