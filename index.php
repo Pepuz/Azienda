@@ -27,8 +27,6 @@ if (isset($_GET['logout'])) {
 $email = $_SESSION['email'];
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <?php include "common/head.php"; ?>
@@ -102,9 +100,9 @@ $email = $_SESSION['email'];
         Scripts
     ***********************************-->
     <script src="plugins/common/common.min.js"></script>
+    <script src="plugins/common/metismenu/js/metisMenu.min.js"></script>
     <script src="js/custom.min.js"></script>
-
-
+    <script src="js/callriunioni.js"></script>
 
 </body>
 

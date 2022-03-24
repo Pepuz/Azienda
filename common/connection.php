@@ -6,9 +6,7 @@ $db = 'azienda';
 
 $cid = new mysqli($hostname,$username,$password,$db);
 
-if($cid->connect_errno)
-  { echo 'Errore connessione (' . $cid->connect_errno . ')' . $cid->connect_error; }
-else 
-  { echo 'Connesso. ' . $cid->host_info . "\n";}
-
-?>
+// if($cid->connect_errno)
+//   { echo 'Errore connessione (' . $cid->connect_errno . ')' . $cid->connect_error; }
+// else 
+//   { echo 'Connesso. ' . $cid->host_info . "\n";}
