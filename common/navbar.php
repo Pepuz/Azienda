@@ -23,7 +23,7 @@
             </li>
             <?php
 			if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore') {
-				echo "<li><a href=\"index.php\" aria-expanded=\"false\"><i class=\"icon-badge menu-icon\"></i><span class=\"nav-text\">Autorizzazioni</span></a></li>"
+				echo "<li><a href=\"index.php\" aria-expanded=\"false\"><i class=\"icon-badge menu-icon\"></i><span class=\"nav-text\">Autorizzazioni</span></a></li>";
 			}
 			?>
             <li>
