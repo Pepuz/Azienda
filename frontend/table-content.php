@@ -19,9 +19,9 @@
                             <tr>
                                 <?php
                                 echo "<td>" . $row['tema'] . "</td>"
-                                    . "<td>" . $row['salariunioni'] . "</td>"
-                                    . "<td>" . $row['data_riunione'] . "</td>"
-                                    . "<td>" . $row['ora'] . "</td>";
+                                    . "<td>" . $row['Salariunioni'] . "</td>"
+                                    . "<td>" . $row['Data'] . "</td>"
+                                    . "<td>" . $row['Ora'] . "</td>";
                                 ?>
                             </tr>
                         </tbody>
