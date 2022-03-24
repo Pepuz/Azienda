@@ -48,21 +48,20 @@ $result = $cid->query($query);
                                     echo "<td>" . $row['data_riunione'] . "</td>";
                                     echo "<td>" . $row['ora'] . "</td>";
                                     if ($passed) {
-                                        echo "<td><span class=\"label label-pill label-danger\">Passata</span></td>";
+                                        echo "<td><span class='label label-pill label-danger'>Passata</span></td>";
                                     } else {
-                                        echo "<td><span class=\"label label-pill label-success\">Programmata</span></td>";
+                                        echo "<td><span class='label label-pill label-success'>Programmata</span></td>";
                                     }
-
-                                    // if ($row['partecipazione'] == 0) {
-                                    //     echo '<td><span class="label label-danger">Non Accettata</span></td>';
-                                    // } else
                                     if (!isset($row['partecipazione']) && !$passed) {
                                         echo '<td><button type="button" class="btn mb-1 btn-info"><a href="backend/accetta_riunioni.php?id=' . $row['id'] . '">Accetta Invito</a></button></td>';
                                         echo '<td><button type="button" class="btn mb-1 btn-danger"><a href="backend/rifiuta_riunioni.php?id=' . $row['id'] . '">Non Accettare</a></button></td>';
                                     } elseif ($row['partecipazione'] == 1) {
                                         echo '<td><button type="button" class="btn mb-1 btn-danger"><a href="backend/rifiuta_riunioni.php?id=' . $row['id'] . '">Disiscrivi</a></button></td>';
+                                        echo "<td></td>";
                                     } elseif ((!isset($row['partecipazione']) || $row['partecipazione'] == 0)) {
                                         echo '<td><span class="label label-danger">Non Accettata</span></td>';
+                                        echo '<td><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Motivazione</button></td>';
+                                        echo '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);"><a class="dropdown-item" href="#">Link 1</a> <a class="dropdown-item" href="#">Link 2</a> <a class="dropdown-item" href="#">Link 3</a></div>';
                                     }
                                     echo "</tr>";
                                 }
