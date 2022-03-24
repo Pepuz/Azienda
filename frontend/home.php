@@ -1,11 +1,6 @@
 <?php
-$query = "SELECT * FROM partecipa JOIN riunioni 
-WHERE riunione=id AND partecipante= '$email'
-AND Data > CURDATE()
-OR (Data = CURDATE() AND Ora > TIME(NOW()))
-ORDER BY Data ASC, Ora ASC 
-LIMIT 1";
-$result = $cid->query($query);
+$result=nextMeeting($cid,$email);
+	
 $count = $result->num_rows;
 $row = $result->fetch_assoc();
 ?>

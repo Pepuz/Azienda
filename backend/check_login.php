@@ -3,14 +3,14 @@
 session_start();
 
 require "../common/connection.php";
+require "../common/functions.php";
 
 // username and password sent from form 
 $email = $_POST['email']; 
 $pwd = $_POST['pwd']; 
 $error = "Email o Password errata";
 
-$query = "SELECT * FROM utenti WHERE email='$email' and password='$pwd'";
-$result = $cid->query($query);
+$result=isUser($cid,$email,$pwd);
 
 // num_rows is counting table rows
 $count = $result->num_rows;
@@ -30,6 +30,7 @@ if($count==1){
     }
 
 	$_SESSION['ruolo'] = $row['ruolo'];
+	$_SESSION['data_autorizzazione'] = $row['data_autorizzazione'];
 	$_SESSION['nome'] = $row['nome'];
 	$_SESSION['cognome'] = $row['cognome'];
 	header("location:../index.php");
