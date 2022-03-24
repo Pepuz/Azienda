@@ -22,10 +22,10 @@
                 </a>
             </li>
             <?php
-            if $_SESSION['ruolo']=="direttore" {
-                echo "<li><a href=\"index.php\" aria-expanded=\"false\"><i class=\"icon-envelope menu-icon\"></i><span class=\"nav-text\">Autorizza</span></a></li>";
-            }
-            ?>
+			if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore') {
+				echo "<li><a href=\"index.php\" aria-expanded=\"false\"><i class=\"icon-badge menu-icon\"></i><span class=\"nav-text\">Autorizzazioni</span></a></li>"
+			}
+			?>
             <li>
                 <a href="index.php" aria-expanded="false">
                     <i class="icon-badge menu-icon"></i><span class="nav-text">Sale Riunioni</span>
