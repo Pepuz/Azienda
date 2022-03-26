@@ -10,7 +10,8 @@ $email = $_POST['email'];
 $pwd = $_POST['pwd']; 
 $error = "Email o Password errata";
 
-$result=isUser($cid,$email,$pwd);
+$query = "SELECT * FROM utenti WHERE email='$email' and password='$pwd'";
+$result = $cid->query($query);
 
 // num_rows is counting table rows
 $count = $result->num_rows;
@@ -30,7 +31,6 @@ if($count==1){
     }
 
 	$_SESSION['ruolo'] = $row['ruolo'];
-	$_SESSION['data_autorizzazione'] = $row['data_autorizzazione'];
 	$_SESSION['nome'] = $row['nome'];
 	$_SESSION['cognome'] = $row['cognome'];
 	header("location:../index.php");

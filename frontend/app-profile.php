@@ -1,11 +1,9 @@
 <?php
- 
 // Starting the session, to use and
 // store data in session variable
 session_set_cookie_params(0);
 session_start();
 require "common/connection.php";
-  
 // If the session variable is empty, this
 // means the user is yet to login
 // User will be sent to 'login.php' page
@@ -14,7 +12,6 @@ if (!isset($_SESSION['email'])) {
     $_SESSION['msg'] = "You have to log in first";
     header('location: login.php');
 }
-  
 // Logout button will destroy the session, and
 // will unset the session variables
 // User will be headed to 'login.php'
@@ -25,10 +22,10 @@ if (isset($_GET['logout'])) {
     header("location: login.php");
 }
 
-$email=$_SESSION['email'];
-$query="SELECT * FROM utenti
+$email = $_SESSION['email'];
+$query = "SELECT * FROM utenti
 		WHERE email= '$email'";
-		
+
 $result = $cid->query($query);
 $row = $result->fetch_assoc();
 ?>
@@ -64,7 +61,6 @@ $row = $result->fetch_assoc();
         Preloader end
     ********************-->
 
-    
     <!--**********************************
         Main wrapper start
     ***********************************-->
@@ -77,7 +73,7 @@ $row = $result->fetch_assoc();
             <div class="brand-logo">
                 <a href="index.html">
                     <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <span class="logo-compact"><img src="./images/logo.png" alt=""></span>
                     <span class="brand-title">
                         <img src="images/logo-text.png" alt="">
                     </span>
@@ -91,30 +87,30 @@ $row = $result->fetch_assoc();
         <!--**********************************
             Header start
         ***********************************-->
-        <div class="header">    
+        <div class="header">
             <div class="header-content clearfix">
                 <div class="header-right">
                     <ul class="clearfix">
-                        
+
                         <li class="icons dropdown" style="padding-right: 20px;padding-left: 20px;"><a href="javascript:void(0)" data-toggle="dropdown">
                                 <i class="mdi mdi-bell-outline"></i>
-                                
+
                             </a>
                             <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
                                 <div class="dropdown-content-heading d-flex justify-content-between">
                                     <span class="">Notifications</span>
-                                        
+
                                 </div>
                                 <div class="dropdown-content-body">
-                                    
+
 
                                 </div>
                             </div>
                         </li>
-                        
+
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative" data-toggle="dropdown">
-                                
+
                                 <img src="images/user.png" height="40" width="40" alt="">
                             </div>
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
@@ -146,11 +142,11 @@ $row = $result->fetch_assoc();
         <!--**********************************
             Sidebar start
         ***********************************-->
-        <div class="nk-sidebar">           
+        <div class="nk-sidebar">
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
                     <li class="nav-label">Dashboard</li>
-					<hr class="my-2">
+                    <hr class="my-2">
                     <li>
                         <a href="index.html" aria-expanded="false">
                             <i class="icon-notebook menu-icon"></i><span class="nav-text">Riunioni</span>
@@ -166,7 +162,6 @@ $row = $result->fetch_assoc();
                             <i class="icon-badge menu-icon"></i><span class="nav-text">Sale Riunioni</span>
                         </a>
                     </li>
-                    
                 </ul>
             </div>
         </div>
@@ -210,9 +205,9 @@ $row = $result->fetch_assoc();
                                     <li><strong class="text-dark mr-4">Dipartimento</strong> <span><?php echo $row['dipartimento']; ?></span></li>
                                 </ul>
                             </div>
-                        </div>  
+                        </div>
                     </div>
-                    
+
                     <div class="col-lg-8">
                         <div class="card">
                             <div class="card-body">
@@ -226,7 +221,7 @@ $row = $result->fetch_assoc();
                                                 <th scope="col">Data di Nascita</th>
                                                 <th scope="col">Data inizio</th>
                                                 <th scope="col">Anni servizio</th>
-                                                <th scope="col">Dipartimento</th> 
+                                                <th scope="col">Dipartimento</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -244,12 +239,12 @@ $row = $result->fetch_assoc();
         <!--**********************************
             Content body end
         ***********************************-->
-        
-        
+
+
         <!--**********************************
             Footer start
         ***********************************-->
-        <?php include "common/footer.php";?>
+        <?php include "common/footer.php"; ?>
         <!--**********************************
             Footer end
         ***********************************-->

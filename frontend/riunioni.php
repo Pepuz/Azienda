@@ -7,11 +7,10 @@ if (!isset($_SESSION['email'])) {
 
 $email = $_SESSION['email'];
 
-$result = listMeetings($cid,$email);
+$query = "SELECT partecipazione, tema, data_riunione, ora, salariunioni, id FROM partecipa JOIN riunioni 
+		WHERE riunione=id AND partecipante='$email' ORDER BY data_riunione, ora";
 
-$active_meetings = activeMeetings($cid,$email);
-	
-$status="";
+$result = $cid->query($query);
 
 ?>
 
@@ -35,24 +34,35 @@ $status="";
                                     <th>Data</th>
                                     <th>Orario</th>
                                     <th>Stato</th>
-                                    <th>Annulla Iscrizione</th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
                                 while ($row = $result->fetch_assoc()) {
-				    if (in_array($row['id'],$active_meetings)) {
-					    $status = "Programmata";
-				    } else {
-					    $status = "Terminata";
-				    }
+                                    $passed = date('Ymd') > date('Ymd', strtotime($row['data_riunione']));
                                     echo "<tr>";
                                     echo "<td>" . $row['tema'] . "</td>";
-                                    echo "<td>" . $row['Salariunioni'] . "</td>";
-                                    echo "<td>" . $row['Data'] . "</td>";
-                                    echo "<td>" . $row['Ora'] . "</td>";
-                                    echo "<td><span class=\"label label-pill label-success\">$status</span></td>";
-                                    echo "<td><button type=\"button\" class=\"btn mb-1 btn-danger\">Disiscrivi</button></td>";
+                                    echo "<td>" . $row['salariunioni'] . "</td>";
+                                    echo "<td>" . $row['data_riunione'] . "</td>";
+                                    echo "<td>" . $row['ora'] . "</td>";
+                                    if ($passed) {
+                                        echo "<td><span class='label label-pill label-danger'>Passata</span></td>";
+                                    } else {
+                                        echo "<td><span class='label label-pill label-success'>Programmata</span></td>";
+                                    }
+                                    if (!isset($row['partecipazione']) && !$passed) {
+                                        echo '<td><button type="button" class="btn mb-1 btn-info"><a href="backend/accetta_riunioni.php?id=' . $row['id'] . '">Accetta Invito</a></button></td>';
+                                        echo '<td><button type="button" class="btn mb-1 btn-danger"><a href="backend/rifiuta_riunioni.php?id=' . $row['id'] . '">Non Accettare</a></button></td>';
+                                    } elseif ($row['partecipazione'] == 1) {
+                                        echo '<td><button type="button" class="btn mb-1 btn-danger"><a href="backend/rifiuta_riunioni.php?id=' . $row['id'] . '">Disiscrivi</a></button></td>';
+                                        echo "<td></td>";
+                                    } elseif ((!isset($row['partecipazione']) || $row['partecipazione'] == 0)) {
+                                        echo '<td><span class="label label-danger">Non Accettata</span></td>';
+                                        echo '<td><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Motivazione</button></td>';
+                                        echo '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);"><a class="dropdown-item" href="#">Link 1</a> <a class="dropdown-item" href="#">Link 2</a> <a class="dropdown-item" href="#">Link 3</a></div>';
+                                    }
                                     echo "</tr>";
                                 }
                                 ?>
@@ -60,11 +70,13 @@ $status="";
                         </table>
                     </div>
                 </div>
-                <?php
-		if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore') {
-			echo "<div class='card-footer'><button type='button' class='btn btn-primary'>Crea Riunione</button></div>";		
-                }
-                ?>
+                <div class="card-footer">
+                    <?php
+                    if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore') {
+                        echo '<button type="button" class="btn btn-primary">Crea Riunione</button>';
+                    }
+                    ?>
+                </div>
             </div>
         </div>
     </div>

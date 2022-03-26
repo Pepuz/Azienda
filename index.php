@@ -28,8 +28,6 @@ if (isset($_GET['logout'])) {
 $email = $_SESSION['email'];
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <?php include "common/head.php"; ?>
@@ -108,6 +106,7 @@ $email = $_SESSION['email'];
     <script src="js/settings.js"></script>
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
+    <script src="js/callriunioni.js"></script>
 
 </body>
 

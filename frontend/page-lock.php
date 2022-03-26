@@ -17,13 +17,11 @@ if (!isset($_SESSION['email'])) {
     <title>Meetup Planner</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-    
     <link href="../css/style.css" rel="stylesheet">
 
 </head>
 
 <body class="h-100">
-    
     <!--*******************
         Preloader start
     ********************-->
@@ -38,7 +36,6 @@ if (!isset($_SESSION['email'])) {
         Preloader end
     ********************-->
 
-    
 
 
 
@@ -49,21 +46,21 @@ if (!isset($_SESSION['email'])) {
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
-                                <a class="text-center"> <h4>Login</h4></a>
+                                <a class="text-center">
+                                    <h4>Login</h4>
+                                </a>
                                 <form class="mt-5 mb-3 login-input" action="../backend/unlock.php" method="POST">
                                     <div class="form-group">
                                         <input type="password" class="form-control" placeholder="Password" name="pwd" required>
                                     </div>
                                     <button class="btn login-form__btn submit w-100" type="submit">Unlock</button>
-									<?php
-										if(isset($_SESSION["error"]))
-										{
-											$error = $_SESSION["error"];
-											echo "<span style='color:red;'>$error</span>";
-										}
-									?>  
+                                    <?php
+                                    if (isset($_SESSION["error"])) {
+                                        $error = $_SESSION["error"];
+                                        echo "<span style='color:red;'>$error</span>";
+                                    }
+                                    ?>
                                 </form>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -71,24 +68,21 @@ if (!isset($_SESSION['email'])) {
             </div>
         </div>
     </div>
-    
+    </div>
 
-    
+
+
 
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="../plugins/common/common.min.js"></script>
+    <!-- <script src="../plugins/common/common.min.js"></script> -->
     <script src="../js/custom.min.js"></script>
-    
+
 </body>
+
 </html>
 
 <?php
-    unset($_SESSION["error"]);
+unset($_SESSION["error"]);
 ?>
-
-
-
-
-
