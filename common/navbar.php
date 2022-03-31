@@ -12,7 +12,7 @@
                 </ul>
                 <?php
                 if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore' || (isset($_SESSION['data_autorizzazione']))) {
-                    echo "<ul aria-expanded=\"false\"><li class=\"active\"><a class=\"active\" href=\"index.php?op=riunioni\">Crea Riunione</a></li></ul>";
+                    echo "<ul aria-expanded=\"false\"><li class=\"active\"><a class=\"active\" href=\"index.php?op=creaRiunioni\">Crea Riunione</a></li></ul>";
                 }
                 ?>
             </li>
