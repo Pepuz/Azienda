@@ -12,9 +12,9 @@ function nextMeeting($cid,$email)
 {
   $query = "SELECT * FROM partecipa JOIN riunioni 
             WHERE riunione=id AND partecipante= '$email'
-            AND Data > CURDATE()
-            OR (Data = CURDATE() AND Ora > TIME(NOW()))
-            ORDER BY Data ASC, Ora ASC 
+            AND data_riunione > CURDATE()
+            OR (data_riunione = CURDATE() AND ora > TIME(NOW()))
+            ORDER BY data_riunione ASC, ora ASC 
             LIMIT 1";
   
   $result = $cid->query($query);
@@ -24,7 +24,7 @@ function nextMeeting($cid,$email)
 
 function listMeetings($cid,$email)
 {
-  $query = "SELECT id, tema, Data, Ora, Salariunioni FROM partecipa JOIN riunioni 
+  $query = "SELECT id, tema, data_riunione, ora, salariunioni FROM partecipa JOIN riunioni 
 		        WHERE riunione=id AND partecipante= '$email'";
 
   $result = $cid->query($query);
