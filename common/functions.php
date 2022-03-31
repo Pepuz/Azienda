@@ -32,24 +32,6 @@ function listMeetings($cid,$email)
   return $result;
 }
 
-function activeMeetings($cid,$email)
-{
-	$query = "SELECT id FROM partecipa JOIN riunioni 
-           	  WHERE riunione=id AND partecipante= '$email'
-            	  AND Data > CURDATE()
-            	  OR (Data = CURDATE() AND Ora > TIME(NOW()))";
-	
-	$result = $cid->query($query);
-	
-	$active_meetings =array();
-	while($row = $result->fetch_assoc())
-	{
-	 $active_meetings[] = $result;
-	}
-	      
-	return $active_meetings;
-}
-
 ?>
 	 
   
