@@ -38,6 +38,15 @@ function listaDipartimenti($cid)
 	
 	$result = $cid->query($query);
 	
+	$output = '';
+	
+	while($row = $result->fetch_assoc())
+	{
+		$output = '<option value="">'.$row["nome"].'</option>';
+	}
+	
+	return $output;
+	
 ?>
 	 
   
