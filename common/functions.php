@@ -46,6 +46,23 @@ function listaDipartimenti($cid)
 	}
 	
 	return $output;
+}
+
+function listaSale($cid)
+{
+	$query = "SELECT * FROM sale_riunioni";
+	
+	$result = $cid->query($query);
+	
+	$output = '';
+	
+	while($row = $result->fetch_assoc())
+	{
+		$output = '<option value="">'.$row["nome"].'</option>';
+	}
+	
+	return $output;
+}
 	
 ?>
 	 
