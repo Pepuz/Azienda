@@ -32,6 +32,12 @@ function listMeetings($cid,$email)
   return $result;
 }
 
+function listaDipartimenti($cid)
+{
+	$query = "SELECT * FROM dipartimenti";
+	
+	$result = $cid->query($query);
+	
 ?>
 	 
   
