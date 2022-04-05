@@ -13,7 +13,7 @@
                                                 <label class="mr-sm-2">Dipartimento</label>
                                                 <select class="custom-select mr-sm-2" name="dipartimento" id="dipartimento">
                                                     <option selected="selected">Seleziona Dipartimento</option>
-                                                    <option value="1">One</option>
+                                                    <?php echo listaDipartimenti($cid); ?>
                                                 </select>
                                             </div>
                                         </div>
