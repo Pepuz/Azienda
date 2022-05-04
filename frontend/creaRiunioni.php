@@ -14,6 +14,8 @@
                                                 <select class="custom-select mr-sm-2" name="dipartimento" id="dipartimento">
                                                     <option selected="selected">Seleziona Dipartimento</option>
                                                     <?php echo listaDipartimenti($cid); ?>
+
+                                                    
                                                 </select>
                                             </div>
                                         </div>
