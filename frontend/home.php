@@ -1,5 +1,5 @@
 <?php
-$result = nextMeeting($cid, $_SESSION[email]);
+$result = nextMeeting($cid, $email);
 $count = $result->num_rows;
 $row = $result->fetch_assoc();
 ?>
