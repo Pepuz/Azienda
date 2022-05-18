@@ -102,11 +102,15 @@ $email = $_SESSION['email'];
     ***********************************-->
     <script src="plugins/common/common.min.js"></script>
     <script src="plugins/metismenu/js/metisMenu.min.js"></script>
+	<script src="plugins/animate/animate.min.css"></script>
+	<script src="plugins/bootstrap-select/dist/css/bootstrap-select.min.css"></script>
+	<script src="plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
     <script src="js/custom.min.js"></script>
     <script src="js/settings.js"></script>
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
     <script src="js/callriunioni.js"></script>
+	<script src="js/callSale.js" type="text/javascript"></script>
 
 </body>
 
