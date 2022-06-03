@@ -41,7 +41,123 @@ function listaDipartimenti($cid)
 	return $result;
 }
 
+function listaImpiegati($cid,$email)
+{
+	$query = "SELECT * FROM utenti WHERE ruolo = 'impiegato semplice'
+			  AND email <> '$email'";
 	
+	$result = $cid->query($query);
+	
+	return $result;
+}
+
+function listaFunzionari($cid,$email)
+{
+	$query = "SELECT * FROM utenti WHERE ruolo = 'funzionario'
+			  AND email <> '$email'";
+	
+	$result = $cid->query($query);
+	
+	return $result;
+}
+
+function listaCapisettore($cid,$email)
+{
+	$query = "SELECT * FROM utenti WHERE ruolo = 'caposettore'
+		      AND email <> '$email'";
+	
+	$result = $cid->query($query);
+	
+	return $result;
+}
+
+function listaDirettori($cid,$email)
+{
+	$query = "SELECT * FROM utenti WHERE ruolo = 'direttore'
+		      AND email <> '$email'";
+	
+	$result = $cid->query($query);
+	
+	return $result;
+}
+
+function isOccupied($cid,$startTime,$endTime,$sala,$data)
+{
+	$query =  " SELECT * FROM riunioni
+				WHERE
+					(
+						ora BETWEEN '$startTime' AND '$endTime' OR
+						durata BETWEEN '$startTime' AND '$endTime' OR
+						'$startTime' BETWEEN ora AND durata OR
+						'$endTime' BETWEEN ora AND durata
+					) 
+				AND data_riunione = '$data' AND salariunioni = '$sala'";
+
+	$result = $cid->query($query);
+	
+	$count = $result->num_rows;
+	
+	if($count!=0){
+		return true;
+		
+	} else {
+		return false;
+	}
+	
+}
+
+function capienzaSala($cid, $sala)
+{
+	$query = "SELECT capienza FROM sale_riunioni WHERE nome = '$sala'";
+	
+	$result = $cid->query($query);
+	
+	while ($row = $result->fetch_assoc()) {
+	
+		return $row['capienza'];
+	}
+}
+
+function newId($cid)
+{
+	$query = "SELECT id FROM riunioni WHERE id=(SELECT max(id) FROM riunioni)";
+	
+	$result = $cid->query($query);
+	
+	while ($row = $result->fetch_assoc()) {
+	
+		return ++$row['id'];
+	}
+	
+}
+
+function redirect($url)
+{
+    if (!headers_sent())
+    {    
+        header('Location: '.$url);
+        exit;
+        }
+    else
+        {  
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="'.$url.'";';
+        echo '</script>';
+        echo '<noscript>';
+        echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+        echo '</noscript>'; exit;
+    }
+}
+
+function notAuth($cid)
+{
+	$query = "SELECT * FROM utenti WHERE data_autorizzazione IS NULL AND ruolo <> 'direttore'";
+	
+	$result = $cid->query($query);
+	
+	return $result;
+
+}	
 ?>
 	 
   
