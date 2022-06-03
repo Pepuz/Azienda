@@ -94,17 +94,28 @@ $(function () {
 				return false;
 			}
 			if(json.status==='success'){
-				$("#modulo")[0].reset();
-				$('#successo').html("Riunione creata correttamente"); 
-				$("#successo").show();
-				$('#successo').delay(5000).fadeOut('slow');
+				sessionStorage.setItem('reload',true);
+				window.location.reload();
+			
 			}
 		}
       });
     });
-  });	
+  });
 
+$( function () {
+        if (sessionStorage.getItem('reload') != "false") {
+            $('#successo').html("Riunione creata correttamente"); 
+			$("#successo").show();
+			$('#successo').delay(5000).fadeOut('slow');
+            sessionStorage.setItem('reload', false);
+        }
+    } 
+);  
 
+$(document).ready(function(){
+    $(window).scrollTop(0);
+});
 </script>
 			<div class="content-body">
 				<div class="row page-titles mx-0">
@@ -114,7 +125,7 @@ $(function () {
                             <div class="card-body">
                                 <h4 class="card-title" style="margin-bottom:30px;">Crea Riunione</h4>
                                 <div class="basic-form">
-                                    <form id="modulo" action="backend/check_creazione.php" method="POST">
+                                    <form autocomplete="off" id="modulo" action="backend/check_creazione.php" method="POST">
                                         <div class="form-row align-items-center" style="margin-top: 20px;">
                                             <div class="col-auto my-1">
                                                 <label class="mr-sm-2">Dipartimento</label>
