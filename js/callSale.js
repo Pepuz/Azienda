@@ -26,5 +26,21 @@ function listaSale(str) {
 			
 }
 
+function capienzaSala(str) {
+	
+	xhr = new ajaxRequest();
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+			document.getElementById("capienza").innerHTML=xhr.responseText;
+		}
+	}
+	
+	xhr.open("GET", "backend/capienza_sala.php?q="+str, true);
+	
+	xhr.send();
+	
+}
+
 
 
