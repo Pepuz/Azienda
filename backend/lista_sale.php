@@ -10,7 +10,7 @@ $result = $cid->query($query);
 	
 while($row = $result->fetch_assoc())
 {
-	echo "<option>".$row['nome'] . "</option>";
+	echo "<option value=\"".$row['nome']."\">".$row['nome'] . "</option>";
 }
 
 ?>
