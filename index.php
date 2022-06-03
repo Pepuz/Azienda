@@ -1,7 +1,4 @@
 <?php
-
-// Starting the session, to use and
-// store data in session variable
 session_set_cookie_params(0);
 session_start();
 require "common/connection.php";
@@ -34,9 +31,6 @@ $email = $_SESSION['email'];
 
 <body>
 
-    <!--*******************
-        Preloader start
-    ********************-->
     <div id="preloader">
         <div class="loader">
             <svg class="circular" viewBox="25 25 50 50">
@@ -44,31 +38,12 @@ $email = $_SESSION['email'];
             </svg>
         </div>
     </div>
-    <!--*******************
-        Preloader end
-    ********************-->
-
-
-    <!--**********************************
-        Main wrapper start
-    ***********************************-->
+	
     <div id="main-wrapper">
-
-        <!--**********************************
-            Header start
-        ***********************************-->
 
         <?php include "common/header.php"; ?>
 
-        <!--**********************************
-            Navbar start
-        ***********************************-->
-
         <?php include "common/navbar.php"; ?>
-
-        <!--**********************************
-            Content body start
-        ***********************************-->
 
         <?php
 
@@ -78,40 +53,9 @@ $email = $_SESSION['email'];
             include "frontend/home.php";
         }
         ?>
-
-        <!--**********************************
-            Content body end
-        ***********************************-->
-
-
-        <!--**********************************
-            Footer start
-        ***********************************-->
-        <?php include "common/footer.php"; ?>
-
-        <!--**********************************
-            Footer end
-        ***********************************-->
     </div>
-    <!--**********************************
-        Main wrapper end
-    ***********************************-->
 
-    <!--**********************************
-        Scripts
-    ***********************************-->
-    <script src="plugins/common/common.min.js"></script>
-    <script src="plugins/metismenu/js/metisMenu.min.js"></script>
-	<script src="plugins/animate/animate.min.css"></script>
-	<script src="plugins/bootstrap-select/dist/css/bootstrap-select.min.css"></script>
-	<script src="plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <script src="js/custom.min.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/gleek.js"></script>
-    <script src="js/styleSwitcher.js"></script>
-    <script src="js/callriunioni.js"></script>
-	<script src="js/callSale.js" type="text/javascript"></script>
-
+<?php include "common/footer.php"; ?>
 </body>
 
 </html>
