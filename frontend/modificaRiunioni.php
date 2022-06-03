@@ -15,7 +15,14 @@ $result = $cid->query($query);
 $count = $result->num_rows;
 
 ?>
-
+<script>
+function confirmationDelete(anchor)
+{
+   var conf = confirm('Sei sicuro di voler eliminare la riunione?');
+   if(conf)
+      window.location=anchor.attr("href");
+}
+</script>
 <div class="content-body">
 	<div class="row page-titles mx-0">
 		<div class="col-lg-12">
@@ -49,6 +56,7 @@ $count = $result->num_rows;
 										echo "<td>" . $row['durata'] . "</td>";
 										echo "<td></td>";
 										echo '<td><a href=index.php?op=formModifica><button type="button" class="btn btn-primary">Modifica</button></a></td>';
+										echo "<td><a onclick='javascript:confirmationDelete($(this));return false;' href='backend/elimina_riunione.php?id=" . $row['id'] . " ' ><button id='elimina' type='button' class='btn mb-1 btn-danger'>Elimina</button></a></td>";
 										echo "</tr>";
 										}
 									}
