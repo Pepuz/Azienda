@@ -19,7 +19,7 @@ if(isOccupied($cid,$oraInizio,$oraFine,$sala,$data)){
 	$errors[] = "La sala è già occupata in questo orario!";
 }
 
-if(count($partecipanti)>capienzaSala($cid,$sala)) {
+if((count($partecipanti)+1)>capienzaSala($cid,$sala)) {
 	$errors[] = "Il numero di partecipanti supera la capienza massima della sala!";
 }
 
@@ -43,7 +43,7 @@ if(count($errors) > 0){
 	foreach($partecipanti as $partecipante){
 		
 		$partecipa = "INSERT INTO partecipa (partecipante, riunione, partecipazione)
-							VALUES ('$partecipante', '$id', NULL)";
+					  VALUES ('$partecipante', '$id', NULL)";
 			
 		$addPar = $cid->query($partecipa);	
 	}
