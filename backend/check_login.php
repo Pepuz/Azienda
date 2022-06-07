@@ -10,7 +10,7 @@ $email = $_POST['email'];
 $pwd = $_POST['pwd']; 
 $error = "Email o Password errata";
 
-$result = isUser($cid,$email,$pwd)
+$result = isUser($cid,$email,$pwd);
 
 // num_rows is counting table rows
 $count = $result->num_rows;
@@ -39,5 +39,6 @@ else
 {
 	$_SESSION["error"] = $error;
     header("location:../frontend/login.php"); //send user back to the login page.
+	exit();
 }
 ?>
