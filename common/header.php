@@ -35,12 +35,8 @@
                                     <a href="index.php?op=app-profile"><i class="icon-user"></i>
                                         <span>Profilo</span></a>
                                 </li>
-                                <hr class="my-2">
                                 <li>
-                                    <a href="frontend/page-lock.php"><i class="icon-lock"></i> <span>Lock
-                                            Screen</span></a>
-                                </li>
-                                <li><a href="index.php?logout='1'"><i class="icon-key"></i> <span>Logout</span></a>
+                                    <a href="index.php?logout='1'"><i class="icon-key"></i><span>Logout</span></a>
                                 </li>
                             </ul>
                         </div>
