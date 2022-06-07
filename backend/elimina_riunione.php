@@ -12,5 +12,5 @@ $sql = "DELETE FROM riunioni WHERE id='$riunione'";
 
 $result = $cid->query($sql);
 
-redirect("../index.php?op=modificaRiunioni");
+redirect("../index.php?op=eliminaRiunioni");
 ?>
