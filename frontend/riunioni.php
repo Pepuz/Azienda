@@ -59,10 +59,10 @@ $count = $result->num_rows;
 
                                     if ($row['organizzatore'] != $email) {
                                         if (!isset($row['partecipazione']) && !$passed) {
-                                            echo '<td><button type="button" class="btn mb-1 btn-info"><a href="backend/accetta_riunioni.php?id=' . $row['id'] . '">Accetta Invito</a></button></td>';
+                                            echo '<td><a href="backend/accetta_riunioni.php?id=' . $row['id'] . '"><button type="button" class="btn mb-1 btn-info">Accetta Invito</button></a></td>';
 
                                             echo "<td>    
-                                                    <button type='button' class='btn mb-1 btn-danger' data-toggle='modal' data-target='#exampleModalCenter'>Non Accettare</button>
+                                                    <button type='button' class='btn mb-1 btn-danger' data-toggle='modal' data-target='#exampleModalCenter'>Non Accettare</button>='modal' data-target='#exampleModalCenter'>Non Accettare</button>
                                                     <div class='modal fade' id='exampleModalCenter' style='display: none;' aria-hidden='true'>
                                                     <div class='modal-dialog modal-dialog-centered' role='document'>
                                                         <div class='modal-content'>
