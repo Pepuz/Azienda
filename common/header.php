@@ -34,8 +34,8 @@
                         <div class="dropdown-content-body">
                             <ul>
                                 <li>
-                                    <a href="app-profile.php"><i class="icon-user"></i>
-                                        <span>Profile</span></a>
+                                    <a href="index.php?op=app-profile"><i class="icon-user"></i>
+                                        <span>Profilo</span></a>
                                 </li>
                                 <hr class="my-2">
                                 <li>

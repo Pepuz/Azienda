@@ -5,10 +5,10 @@ session_start();
 require "../common/connection.php";
 
 $riunione = $_GET['id'];
-
+$motivazione =  $_GET['motivazione'];
 $email = $_SESSION['email'];
 
-$query = "UPDATE partecipa SET partecipazione=0 WHERE riunione='$riunione' and partecipante='$email'";
+$query = "UPDATE partecipa SET partecipazione=0, motivazione = '$motivazione' WHERE riunione='$riunione' and partecipante='$email'";
 
 $result = $cid->query($query);
 

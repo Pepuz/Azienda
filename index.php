@@ -5,6 +5,7 @@
 session_set_cookie_params(0);
 session_start();
 require "common/connection.php";
+require "common/functions.php";
 
 // If the session variable is empty, this
 // means the user is yet to login
@@ -100,8 +101,11 @@ $email = $_SESSION['email'];
         Scripts
     ***********************************-->
     <script src="plugins/common/common.min.js"></script>
-    <script src="plugins/common/metismenu/js/metisMenu.min.js"></script>
+    <script src="plugins/metismenu/js/metisMenu.min.js"></script>
     <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
     <script src="js/callriunioni.js"></script>
 
 </body>

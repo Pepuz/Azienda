@@ -7,7 +7,7 @@ if (!isset($_SESSION['email'])) {
 
 $email = $_SESSION['email'];
 
-$query = "SELECT partecipazione, tema, data_riunione, ora, salariunioni, id FROM partecipa JOIN riunioni 
+$query = "SELECT partecipazione, tema, data_riunione, ora, salariunioni, id, motivazione FROM partecipa JOIN riunioni 
 		WHERE riunione=id AND partecipante='$email' ORDER BY data_riunione, ora";
 
 $result = $cid->query($query);
@@ -42,11 +42,11 @@ $result = $cid->query($query);
                                 <?php
                                 while ($row = $result->fetch_assoc()) {
                                     $passed = date('Ymd') > date('Ymd', strtotime($row['data_riunione']));
-                                    echo "<tr>";
-                                    echo "<td>" . $row['tema'] . "</td>";
-                                    echo "<td>" . $row['salariunioni'] . "</td>";
-                                    echo "<td>" . $row['data_riunione'] . "</td>";
-                                    echo "<td>" . $row['ora'] . "</td>";
+                                    echo "<tr>
+                                            <td>" . $row['tema'] . "</td>
+                                            <td>" . $row['salariunioni'] . "</td>
+                                            <td>" . $row['data_riunione'] . "</td>
+                                            <td>" . $row['ora'] . "</td>";
                                     if ($passed) {
                                         echo "<td><span class='label label-pill label-danger'>Passata</span></td>";
                                     } else {
@@ -54,22 +54,89 @@ $result = $cid->query($query);
                                     }
                                     if (!isset($row['partecipazione']) && !$passed) {
                                         echo '<td><button type="button" class="btn mb-1 btn-info"><a href="backend/accetta_riunioni.php?id=' . $row['id'] . '">Accetta Invito</a></button></td>';
-                                        echo '<td><button type="button" class="btn mb-1 btn-danger"><a href="backend/rifiuta_riunioni.php?id=' . $row['id'] . '">Non Accettare</a></button></td>';
+
+                                        echo "<td>    
+                                                <button type='button' class='btn mb-1 btn-danger' data-toggle='modal' data-target='#exampleModalCenter'>Non Accettare</button>
+                                                <div class='modal fade' id='exampleModalCenter' style='display: none;' aria-hidden='true'>
+                                                <div class='modal-dialog modal-dialog-centered' role='document'>
+                                                    <div class='modal-content'>
+                                                        <div class='modal-header'>
+                                                            <h5 class='modal-title'>Inserire motivazione</h5>
+                                                            <button type='button' class='close' data-dismiss='modal'><span>x</span></button>
+                                                        </div>
+                                                        <div class='modal-body'>
+                                                            <div class='basic-dropdown'>
+                                                                <div class='dropdown'> 
+                                                                    <button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown' aria-expanded='false'>
+                                                                        Motivazione
+                                                                    </button>
+                                                                    <div class='dropdown-menu' x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);'>
+                                                                        <a class='dropdown-item' href='backend/rifiuta_riunioni.php?id=" . $row['id'] . "&motivazione=salute'>Salute</a>
+                                                                        <a class='dropdown-item' href='backend/rifiuta_riunioni.php?id=" . $row['id'] . "&motivazione=indisposizione'>Indisposizione</a>
+                                                                        <a class='dropdown-item' href='backend/rifiuta_riunioni.php?id=" . $row['id'] . "&motivazione=familiari'>Familiari</a>
+                                                                        <a class='dropdown-item' href='backend/rifiuta_riunioni.php?id=" . $row['id'] . "&motivazione=altro'>Altro...</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </td>";
                                     } elseif ($row['partecipazione'] == 1) {
-                                        echo '<td><button type="button" class="btn mb-1 btn-danger"><a href="backend/rifiuta_riunioni.php?id=' . $row['id'] . '">Disiscrivi</a></button></td>';
-                                        echo "<td></td>";
+                                        echo "<td><span class='label label-success'>Accettata</span></td>";
+
+                                        echo "<td>    
+                                                <button type='button' class='btn mb-1 btn-danger' data-toggle='modal' data-target='#exampleModalCenter'>Disiscrivi</button>
+                                                <div class='modal fade' id='exampleModalCenter' style='display: none;' aria-hidden='true'>
+                                                <div class='modal-dialog modal-dialog-centered' role='document'>
+                                                    <div class='modal-content'>
+                                                        <div class='modal-header'>
+                                                            <h5 class='modal-title'>Inserire motivazione</h5>
+                                                            <button type='button' class='close' data-dismiss='modal'><span>x</span></button>
+                                                        </div>
+                                                        <div class='modal-body'>
+                                                            <div class='basic-dropdown'>
+                                                                <div class='dropdown'> 
+                                                                    <button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown' aria-expanded='false'>
+                                                                        Motivazione
+                                                                    </button>
+                                                                    <div class='dropdown-menu' x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);'>
+                                                                        <a class='dropdown-item' href='backend/rifiuta_riunioni.php?id=" . $row['id'] . "&motivazione=salute'>Salute</a>
+                                                                        <a class='dropdown-item' href='backend/rifiuta_riunioni.php?id=" . $row['id'] . "&motivazione=indisposizione'>Indisposizione</a>
+                                                                        <a class='dropdown-item' href='backend/rifiuta_riunioni.php?id=" . $row['id'] . "&motivazione=familiari'>Familiari</a>
+                                                                        <a class='dropdown-item' href='backend/rifiuta_riunioni.php?id=" . $row['id'] . "&motivazione=altro'>Altro...</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </td>";
                                     } elseif ((!isset($row['partecipazione']) || $row['partecipazione'] == 0)) {
-                                        echo '<td><span class="label label-danger">Non Accettata</span></td>';
-                                        echo '<td><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Motivazione</button></td>';
-                                        echo '<div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);"><a class="dropdown-item" href="#">Link 1</a> <a class="dropdown-item" href="#">Link 2</a> <a class="dropdown-item" href="#">Link 3</a></div>';
+                                        echo "<td><span class='label label-danger'>Non Accettata</span></td>
+                                                <td>
+                                                <div class='basic-dropdown'>
+                                                    <div class='dropdown'>
+                                                        <button type='button' class='btn btn-primary dropdown-toggle' data-toggle='dropdown' aria-expanded='false'>
+                                                            Motivazione
+                                                        </button>
+                                                        <div class='dropdown-menu' x-placement='bottom-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);'>
+                                                            <a class='dropdown-item' href='#'>" . $row['motivazione'] . "</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </td>";
                                     }
-                                    echo "</tr>";
+                                    echo '</tr>';
                                 }
                                 ?>
                             </tbody>
                         </table>
                     </div>
                 </div>
+
                 <div class="card-footer">
                     <?php
                     if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore') {

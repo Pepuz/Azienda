@@ -17,13 +17,11 @@ if (!isset($_SESSION['email'])) {
     <title>Meetup Planner</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-
     <link href="../css/style.css" rel="stylesheet">
 
 </head>
 
 <body class="h-100">
-
     <!--*******************
         Preloader start
     ********************-->
@@ -37,7 +35,6 @@ if (!isset($_SESSION['email'])) {
     <!--*******************
         Preloader end
     ********************-->
-
 
 
 
