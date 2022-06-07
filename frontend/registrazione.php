@@ -52,28 +52,38 @@ $(function() {
 	
 $(function () {
     $('#registrazione').submit(function (e) {
-      e.preventDefault();
-      $.ajax({
-        type: 'POST',
-        url: 'backend/check_registrazione.php',
-        data: $('#registrazione').serialize(),
-        success: function (data) {
-			var json = $.parseJSON(data);
+		e.preventDefault();
+		$.ajax({
+			type: 'POST',
+			url: 'backend/check_registrazione.php',
+			data: $('#registrazione').serialize(),
+			success: function (data) {
+				var json = $.parseJSON(data);
 
-			if(json.status=== 'error'){
-				$("#error").html(json.errors[0]);
+				if(json.status=== 'error'){
+					$("#error").html(json.errors[0]);
 
-				return false;
-			}
-			if(json.status==='success'){
-				sessionStorage.setItem('reload',true);
-				window.location.reload();
+					return false;
+				}
+				if(json.status==='success'){
+					sessionStorage.setItem('reload',true);
+					window.location.reload();
 			
+				}
 			}
-		}
-      });
+		});
     });
-  });
+});
+  
+$(document).ready(function() {
+	$('#nome').keyup(function() {
+	  $(this).val($(this).val().substr(0, 1).toUpperCase() + $(this).val().substr(1).toLowerCase());
+	});
+	
+	$('#cognome').keyup(function() {
+	  $(this).val($(this).val().substr(0, 1).toUpperCase() + $(this).val().substr(1).toLowerCase());
+	});
+});
 </script>
 
 <div class="content-body">
