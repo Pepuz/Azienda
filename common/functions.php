@@ -48,7 +48,14 @@ function listaImpiegati($cid,$email)
 	
 	$result = $cid->query($query);
 	
-	return $result;
+	$impiegati = '';
+	
+	while($row = $result->fetch_assoc())
+	{
+		$impiegati .= "<option value=\"".$row['email']."\">".$row['email']."</option>";
+	}
+	
+	return $impiegati;
 }
 
 function listaFunzionari($cid,$email)
@@ -58,7 +65,14 @@ function listaFunzionari($cid,$email)
 	
 	$result = $cid->query($query);
 	
-	return $result;
+	$funzionari = '';
+	
+	while($row = $result->fetch_assoc())
+	{
+		$funzionari .= "<option value=\"".$row['email']."\">".$row['email']."</option>";
+	}
+	
+	return $funzionari;
 }
 
 function listaCapisettore($cid,$email)
@@ -68,7 +82,14 @@ function listaCapisettore($cid,$email)
 	
 	$result = $cid->query($query);
 	
-	return $result;
+	$capisettore = '';
+	
+	while($row = $result->fetch_assoc())
+	{
+		$capisettore .= "<option value=\"".$row['email']."\">".$row['email']."</option>";
+	}
+	
+	return $capisettore;
 }
 
 function listaDirettori($cid,$email)
@@ -78,7 +99,14 @@ function listaDirettori($cid,$email)
 	
 	$result = $cid->query($query);
 	
-	return $result;
+	$direttori = '';
+	
+	while($row = $result->fetch_assoc())
+	{
+		$direttori .= "<option value=\"".$row['email']."\">".$row['email']."</option>";
+	}
+	
+	return $direttori;
 }
 
 function isOccupied($cid,$startTime,$endTime,$sala,$data)
@@ -157,7 +185,83 @@ function notAuth($cid)
 	
 	return $result;
 
-}	
+}
+
+function autorizzati($cid)
+{
+	$query = "SELECT * FROM utenti WHERE data_autorizzazione IS NOT NULL AND ruolo <> 'direttore'";
+	
+	$result = $cid->query($query);
+	
+	return $result;
+}
+
+function emailExists($cid,$email)
+{
+	$query = "SELECT email FROM utenti WHERE email = '$email'";
+	
+	$result = $cid->query($query);
+	
+	$count = $result->num_rows;
+	
+	if($count!=0){
+		return true;
+		
+	} else {
+		return false;
+	}
+	
+}
+
+function listaPartecipanti($cid,$id,$email)
+{
+	$query = "SELECT * FROM partecipa WHERE riunione = '$id' AND partecipante <> '$email'";
+	
+	$result = $cid->query($query);
+	
+	$partecipanti=array();
+	
+	while ($row = $result->fetch_assoc()) {
+		
+		$partecipanti[]=$row['partecipante'];
+		
+	}
+	
+	return $partecipanti;
+}
+
+function riunioniCreate($cid,$email)
+{
+	$query = "SELECT * FROM riunioni WHERE organizzatore = '$email'
+				AND data_riunione > CURDATE()
+				OR (data_riunione = CURDATE() AND ora > TIME(NOW()))
+				ORDER BY data_riunione ASC, ora ASC";
+	
+	$result = $cid->query($query);
+	
+	$riunioni = '';
+	
+	while($row = $result->fetch_assoc())
+	{
+		$riunioni .= "<option value=\"".$row['id']."\">".$row['id'].", " . $row['tema'] ."</option>";
+	}
+	
+	return $riunioni;
+}
+
+function dettagliRiunione($cid,$id)
+{
+	$query = "SELECT * FROM riunioni WHERE id = '$id'";
+	
+	$result = $cid->query($query);
+	
+	$dettagli = array();
+	
+	while($row = $result->fetch_assoc())
+	{
+	}
+
+}
 ?>
 	 
   
