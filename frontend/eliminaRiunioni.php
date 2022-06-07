@@ -35,28 +35,28 @@ function confirmationDelete(anchor)
                         <table class="table table-striped">
                                 <?php
 								if($count>0){
-									echo "<thead>";
-									echo "<tr>";
-										echo "<th>Tema</th>";
-										echo "<th>Sala</th>";
-										echo "<th>Data</th>";
-										echo "<th>Inizio</th>";
-										echo "<th>Fine</th>";
-									echo "</tr>";
-									echo "</thead>";
-									echo "<tbody>";
+									echo "<thead>
+										<tr>
+											<th>Tema</th>
+											<th>Sala</th>
+											<th>Data</th>
+											<th>Inizio</th>
+											<th>Fine</th>
+										</tr>
+										</thead>
+										<tbody>";
 									while ($row = $result->fetch_assoc()) {
 										$passed = date('Ymd') > date('Ymd', strtotime($row['data_riunione']));
 										if (!$passed) {
-										echo "<tr>";
-										echo "<td>" . $row['tema'] . "</td>";
-										echo "<td>" . $row['salariunioni'] . "</td>";
-										echo "<td>" . $row['data_riunione'] . "</td>";
-										echo "<td>" . $row['ora'] . "</td>";
-										echo "<td>" . $row['durata'] . "</td>";
-										echo '<td></td>';
-										echo "<td><a onclick='javascript:confirmationDelete($(this));return false;' href='backend/elimina_riunione.php?id=" . $row['id'] . " ' ><button id='elimina' type='button' class='btn mb-1 btn-danger'>Elimina</button></a></td>";
-										echo "</tr>";
+										echo "<tr>
+											<td>" . $row['tema'] . "</td>
+											<td>" . $row['salariunioni'] . "</td>
+											<td>" . $row['data_riunione'] . "</td>
+											<td>" . $row['ora'] . "</td>
+											<td>" . $row['durata'] . "</td>
+											<td></td>
+											<td><a onclick='javascript:confirmationDelete($(this));return false;' href='backend/elimina_riunione.php?id=" . $row['id'] . " ' ><button id='elimina' type='button' class='btn mb-1 btn-danger'>Elimina</button></a></td>
+											</tr>";
 										}
 									}
 									echo "</tbody>";
