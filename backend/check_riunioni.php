@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-//mettere controlli per non finire in questa pagina
 
 require "../common/connection.php";
 $risultato = array("msg" => "", "status" => "ok", "contenuto" => "");
