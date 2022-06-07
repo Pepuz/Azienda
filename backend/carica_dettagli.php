@@ -4,10 +4,10 @@ session_start();
 require "../common/connection.php";
 require "../common/functions.php";
 
-$riunione = $_GET['id'];
-$dettagli = dettagliRiunione($cid,$id);
+$id = $_GET['id'];
+$dettagli = dettagliRiunione($cid,$id)[0];
 $dipartimenti = listaDipartimenti($cid);
-
+print_r($dettagli);
 
 echo   '<div class="form-row align-items-center" style="margin-top: 20px;">';
 	echo	'<div class="col-auto my-1">';
