@@ -15,7 +15,7 @@ $direttori = listaDirettori($cid,$email);
 $( function() {
   $( "#data" ).datepicker({
 	  format: "yyyy-mm-dd",
-	  startDate: new Date()
+	  startDate: '+1d'
   });
   
 });
