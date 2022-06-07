@@ -11,9 +11,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Login</title>
-    <!-- Favicon icon -->
     <link rel="icon" type="image/png" href="../images/favicon.png">
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
     <link href="../css/style.css" rel="stylesheet">
 
 </head>
@@ -56,9 +54,9 @@ session_start();
                                     </div>
                                     <div class="form-check mb-2">
                                         <input class="form-check-input" type="checkbox" name="remember">
-                                        <label class="form-check-label" style="margin-bottom: 20px;">Remember me</label>
+                                        <label class="form-check-label" style="margin-bottom: 40px;">Remember me</label>
                                     </div>
-                                    <div></div>
+									
                                     <button type="submit" class="btn login-form__btn submit w-100" style="margin-bottom: 20px;">Accedi</button>
                                     <?php
                                     if (isset($_SESSION["error"])) {
@@ -67,7 +65,6 @@ session_start();
                                     }
                                     ?>
                                 </form>
-                                <p class="mt-5 login-form__footer">Non hai un account? <a href="page-register.html" class="text-primary">Iscriviti</a></p>
                             </div>
                         </div>
                     </div>
@@ -84,6 +81,9 @@ session_start();
     ***********************************-->
     <script src="../plugins/common/common.min.js"></script>
     <script src="../js/custom.min.js"></script>
+	<script src="../js/settings.js"></script>
+    <script src="../js/gleek.js"></script>
+    <script src="../js/styleSwitcher.js"></script>
 
 </body>
 

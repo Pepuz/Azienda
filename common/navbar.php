@@ -3,32 +3,43 @@
         <ul class="metismenu" id="menu">
             <li class="nav-label">Dashboard</li>
             <hr class="my-2">
-            <li>
+            <li class="mega-menu mega-menu-sm">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="icon-notebook menu-icon"></i><span class="nav-text">Riunioni</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li class="active"><a class="active" href="index.php?op=riunioni">Lista Riunioni</a></li>
-                </ul>
+                    <li class="active"><a href="index.php?op=riunioni">Lista Riunioni</a></li>
+                
                 <?php
                 if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore' || (isset($_SESSION['data_autorizzazione']))) {
-                    echo "<ul aria-expanded=\"false\"><li class=\"active\"><a class=\"active\" href=\"index.php?op=creaRiunioni\">Crea Riunione</a></li></ul>";
+                    echo "<li class=\"active\"><a href=\"index.php?op=creaRiunioni\">Crea Riunione</a></li>";
                 }
                 ?>
-            </li>
-            <li>
-                <a href="index.php" aria-expanded="false">
-                    <i class="icon-envelope menu-icon"></i><span class="nav-text">Inviti</span>
-                </a>
+				<?php
+                if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore' || (isset($_SESSION['data_autorizzazione']))) {
+                    echo "<li class=\"active\"><a href=\"index.php?op=formModifica\">Modifica Riunione</a></li>";
+                }
+                ?>
+				<?php
+                if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore' || (isset($_SESSION['data_autorizzazione']))) {
+                    echo "<li class=\"active\"><a href=\"index.php?op=eliminaRiunioni\">Elimina Riunioni</a></li>";
+                }
+                ?>
+				</ul>
             </li>
             <?php
 			if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore') {
-				echo "<li><a href=\"index.php\" aria-expanded=\"false\"><i class=\"icon-badge menu-icon\"></i><span class=\"nav-text\">Autorizzazioni</span></a></li>";
+				echo "<li><a href=\"index.php?op=registrazione\" aria-expanded=\"false\"><i class=\"icon-badge menu-icon\"></i><span class=\"nav-text\">Registrazioni</span></a></li>";
+			}
+			?>
+            <?php
+			if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore') {
+				echo "<li><a href=\"index.php?op=autorizzazioni\" aria-expanded=\"false\"><i class=\"icon-badge menu-icon\"></i><span class=\"nav-text\">Autorizzazioni</span></a></li>";
 			}
 			?>
             <li>
-                <a href="index.php" aria-expanded="false">
-                    <i class="icon-badge menu-icon"></i><span class="nav-text">Sale Riunioni</span>
+                <a href="index.php?op=statistiche" aria-expanded="false">
+                    <i class="icon-badge menu-icon"></i><span class="nav-text">Statistiche</span>
                 </a>
             </li>
         </ul>
