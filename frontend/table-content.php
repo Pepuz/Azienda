@@ -8,24 +8,24 @@
                     <table class="table table-striped">
 					<?php
 						if($count>0){
-							echo "<thead>";
-							echo "<tr>";
-								echo "<th>Tema</th>";
-								echo "<th>Sala</th>";
-								echo "<th>Data</th>";
-								echo "<th>Inizio</th>";
-								echo "<th>Fine</th>";
-							echo "</tr>";
-							echo "</thead>";
-							echo "<tbody>";
-							echo "<tr>";
-                                echo "<td>" . $row['tema'] . "</td>"
-                                    . "<td>" . $row['salariunioni'] . "</td>"
-                                    . "<td>" . $row['data_riunione'] . "</td>"
-                                    . "<td>" . $row['ora'] . "</td>"
-									. "<td>" . $row['durata'] . "</td>";
-                            echo "</tr>";
-                        echo "</tbody>";
+							echo "<thead>
+							<tr>
+								<th>Tema</th>
+								<th>Sala</th>
+								<th>Data</th>
+								<th>Inizio</th>
+								<th>Fine</th>
+							</tr>
+							</thead>
+								<tbody>
+									<tr>
+                                						<td>" . $row['tema'] . "</td>
+                                    						<td>" . $row['salariunioni'] . "</td>
+                                    						<td>" . $row['data_riunione'] . "</td>
+                                    						<td>" . $row['ora'] . "</td>
+										<td>" . $row['durata'] . "</td>
+                            						</tr>
+                        					</tbody>";
 						} else {
 							echo "<tr> <td colspan='2'> Nessuna riunione programmata per l'utente </td></tr>";
 						}
