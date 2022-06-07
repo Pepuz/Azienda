@@ -72,7 +72,7 @@ $count = $result->num_rows;
 									} else {
 										if (!$passed) {
 											echo "<td></td>";
-											echo '<td><a href=index.php?op=formModifica><button type="button" class="btn btn-primary">Modifica</button></a></td>';
+											echo '<td><a href="index.php?op=formModifica"><button type="button" class="btn btn-primary">Modifica</button></a></td>';
 										} else {
 											echo "<td></td>";
 											echo "<td><button type='button' class='btn btn-primary' disabled>Modifica</button></td>";

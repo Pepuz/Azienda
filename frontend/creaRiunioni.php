@@ -4,7 +4,7 @@ if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] != 'direttore' && (!isset($_
 }
 
 $email = $_SESSION['email'];
-$dipartimenti = listaDipartimenti($cid,$email);
+$dipartimenti = listaDipartimenti($cid);
 $impiegati = listaImpiegati($cid,$email);
 $funzionari = listaFunzionari($cid,$email);
 $capisettore = listaCapisettore($cid,$email);
@@ -56,8 +56,6 @@ $(document).ready(function(){
 	
 	});
 	
-
-	
 }); 
 
 $(function() {
@@ -94,7 +92,7 @@ $(function () {
 				return false;
 			}
 			if(json.status==='success'){
-				sessionStorage.setItem('reload',true);
+				localStorage.setItem('alert',true);
 				window.location.reload();
 			
 			}
@@ -104,11 +102,11 @@ $(function () {
   });
 
 $( function () {
-        if (sessionStorage.getItem('reload') != "false") {
+		if(localStorage.getItem("alert")){
+			localStorage.removeItem("alert");
             $('#successo').html("Riunione creata correttamente"); 
 			$("#successo").show();
-			$('#successo').delay(5000).fadeOut('slow');
-            sessionStorage.setItem('reload', false);
+			$('#successo').delay(4000).fadeOut('slow');
         }
     } 
 );  
@@ -151,6 +149,33 @@ $(document).ready(function(){
                                         </div>
 										<div class="form-row align-items-center" style="margin-top: 20px;">
                                             <div class="col-auto my-1">
+                                            <label class="mr-sm-2" style="margin-bottom: 8px;">Partecipanti</label></br>
+                                                <select name="partecipanti[]" id="partecipanti"  multiple="multiple" placeholder="Seleziona Partecipanti" required>
+													<optgroup label="Impiegati">
+														<?php 
+														echo $impiegati;								
+														?>
+													</optgroup>
+													<optgroup label="Funzionari">
+														<?php 
+														echo $funzionari;												
+														?>
+													</optgroup>
+													<optgroup label="Capisettore">
+														<?php 
+														echo $capisettore;												
+														?>
+													</optgroup>
+													<optgroup label="Direttori">
+														<?php 
+														echo $direttori;												
+														?>
+													</optgroup>
+                                                </select>
+											</div>
+                                        </div>
+										<div class="form-row align-items-center" style="margin-top: 20px;">
+                                            <div class="col-auto my-1">
                                                 <label class="mr-sm-2">Tema</label>
                                                 <input class="form-control input-flat" type="text" name="tema" id="tema" placeholder="Inserisci Tema Riunione..." required>
                                             </div>
@@ -174,45 +199,7 @@ $(document).ready(function(){
 												</label>
 											</div>
 										</div>
-										<div class="form-row align-items-center" style="margin-top: 20px;">
-                                            <div class="col-auto my-1">
-                                            <label class="mr-sm-2" style="margin-bottom: 8px;">Partecipanti</label></br>
-                                                <select name="partecipanti[]" id="partecipanti"  multiple="multiple" placeholder="Seleziona Partecipanti" required>
-													<optgroup label="Impiegati">
-														<?php 
-														while($row = $impiegati->fetch_assoc())
-														{
-															echo "<option value=\"".$row['email']."\">".$row['email']."</option>";
-														}												
-														?>
-													</optgroup>
-													<optgroup label="Funzionari">
-														<?php 
-														while($row = $funzionari->fetch_assoc())
-														{
-															echo "<option value=\"".$row['email']."\">".$row['email']."</option>";
-														}												
-														?>
-													</optgroup>
-													<optgroup label="Capisettore">
-														<?php 
-														while($row = $capisettore->fetch_assoc())
-														{
-															echo "<option value=\"".$row['email']."\">".$row['email']."</option>";
-														}												
-														?>
-													</optgroup>
-													<optgroup label="Direttori">
-														<?php 
-														while($row = $direttori->fetch_assoc())
-														{
-															echo "<option value=\"".$row['email']."\">".$row['email']."</option>";
-														}												
-														?>
-													</optgroup>
-                                                </select>
-											</div>
-                                        </div>
+										
 										<span id="errore_1" style='color:red;'></span></br>
 										<span id="errore_2" style='color:red;'></span>
 										<div class="form-group row" style="margin-top:30px;">
