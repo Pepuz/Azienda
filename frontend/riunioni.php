@@ -11,7 +11,7 @@ $query = "SELECT partecipazione, tema, data_riunione, ora, salariunioni, id, mot
 		WHERE riunione=id AND partecipante='$email' ORDER BY data_riunione, ora";
 
 $result = $cid->query($query);
-
+$count = $result->num_rows;
 ?>
 
 <!--**********************************
