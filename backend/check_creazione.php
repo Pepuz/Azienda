@@ -24,6 +24,13 @@ if((count($partecipanti)+1)>capienzaSala($cid,$sala)) {
 	$errors[] = "Il numero di partecipanti supera la capienza massima della sala!";
 }
 
+foreach($partecipanti as $partecipante){
+	if(isBusy($cid,$partecipante,$data,$oraInizio,$oraFine)) {
+		$errors[] = "L'utente $partecipante partecipa già ad un'altra riunione in questa data e ora!";
+		break;
+	}
+}
+
 if(count($errors) > 0){
     echo json_encode(array('status' => 'error', 'errors' => $errors));
 	
