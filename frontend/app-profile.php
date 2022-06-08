@@ -34,7 +34,7 @@ $row = $result->fetch_assoc();
                         <ul class="card-profile__info">
                             <li class="mb-1"></li>
                             <li><strong class="text-dark mr-4">Email</strong> <span><?php echo $email; ?></span></li>
-                            <li><strong class="text-dark mr-4">Data di nascita</strong> <span><?php echo $row['data_nascita']; ?></span></li>
+                            <li><strong class="text-dark mr-4">Data di nascita</strong></br><span><?php echo $row['data_nascita']; ?></span></li>
                             <li><strong class="text-dark mr-4">Nome</strong> <span><?php echo $row['nome']; ?></span></li>
                             <li><strong class="text-dark mr-4">Cognome</strong> <span><?php echo $row['cognome']; ?></span></li>
                         </ul>
