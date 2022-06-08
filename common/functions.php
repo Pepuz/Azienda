@@ -110,7 +110,7 @@ function listaDirettori($cid,$email)
 	return $direttori;
 }
 
-function isOccupied($cid, $startTime, $endTime, $sala, $data)
+function isOccupied($cid, $startTime, $endTime, $sala, $data, $id)
 {
   $query =  " SELECT * FROM riunioni
 				WHERE
@@ -120,7 +120,7 @@ function isOccupied($cid, $startTime, $endTime, $sala, $data)
 						'$startTime' BETWEEN ora AND durata OR
 						'$endTime' BETWEEN ora AND durata
 					) 
-				AND data_riunione = '$data' AND salariunioni = '$sala'";
+				AND data_riunione = '$data' AND salariunioni = '$sala' AND id <> '$id'";
 
   $result = $cid->query($query);
 
@@ -287,7 +287,10 @@ function dettagliRiunione($cid,$id)
 	
 	while($row = $result->fetch_assoc())
 	{
+		$dettagli[] = $row;
 	}
+	
+	return $dettagli;
 
 }
 ?>
