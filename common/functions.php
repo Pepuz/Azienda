@@ -293,4 +293,28 @@ function dettagliRiunione($cid,$id)
 	return $dettagli;
 
 }
+
+function isBusy($cid,$partecipante,$startTime,$endTime,$data)
+{
+	$query = "SELECT * FROM partecipa JOIN riunioni 
+			WHERE partecipa.riunione = riunioni.id AND partecipante = '$partecipante'
+			AND (
+						ora BETWEEN '$startTime' AND '$endTime' OR
+						durata BETWEEN '$startTime' AND '$endTime' OR
+						'$startTime' BETWEEN ora AND durata OR
+						'$endTime' BETWEEN ora AND durata
+				) 
+			AND data_riunione = '$data'";
+
+	$result = $cid->query($query);
+	
+	$count = $result->num_rows;
+	
+	if($count!=0){
+		return true;
+		
+	} else {
+		return false;
+	}
+}
 ?>
