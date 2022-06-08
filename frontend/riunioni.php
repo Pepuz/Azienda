@@ -12,6 +12,7 @@ $query = "SELECT partecipazione, tema, data_riunione, ora, salariunioni, id, mot
 
 $result = $cid->query($query);
 $count = $result->num_rows;
+
 ?>
 
 <!--**********************************
@@ -27,8 +28,8 @@ $count = $result->num_rows;
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped">
-                        <?php
-                            if($count>0) {
+                            <?php
+                            if ($count > 0) {
                                 echo "<thead>
                                  <tr>
                                      <th>Tema</th>
@@ -42,7 +43,7 @@ $count = $result->num_rows;
                                  </tr>
                                  </thead>
                                  <tbody>";
-                                
+
                                 while ($row = $result->fetch_assoc()) {
                                     $passed = date('Ymd') > date('Ymd', strtotime($row['data_riunione']));
                                     echo "<tr>
@@ -58,11 +59,14 @@ $count = $result->num_rows;
                                     }
 
                                     if ($row['organizzatore'] != $email) {
-                                        if (!isset($row['partecipazione']) && !$passed) {
+                                        if (!isset($row['partecipazione']) && $passed) {
+                                            echo "<td><span class='label label-danger'>Non Accettata</span></td>
+                                            <td></td>";
+                                        } elseif (!isset($row['partecipazione']) && !$passed) {
                                             echo '<td><a href="backend/accetta_riunioni.php?id=' . $row['id'] . '"><button type="button" class="btn mb-1 btn-info">Accetta Invito</button></a></td>';
 
                                             echo "<td>    
-                                                    <button type='button' class='btn mb-1 btn-danger' data-toggle='modal' data-target='#exampleModalCenter'>Non Accettare</button>='modal' data-target='#exampleModalCenter'>Non Accettare</button>
+                                                    <button type='button' class='btn mb-1 btn-danger' data-toggle='modal' data-target='#exampleModalCenter'>Non Accettare</button>
                                                     <div class='modal fade' id='exampleModalCenter' style='display: none;' aria-hidden='true'>
                                                     <div class='modal-dialog modal-dialog-centered' role='document'>
                                                         <div class='modal-content'>
@@ -120,7 +124,7 @@ $count = $result->num_rows;
                                                     </div>
                                                     </div>
                                                 </td>";
-                                        } elseif ((!isset($row['partecipazione']) || $row['partecipazione'] == 0)) {
+                                        } elseif ($row['partecipazione'] == 0) {
                                             echo "<td><span class='label label-danger'>Non Accettata</span></td>
                                                     <td>
                                                     <div class='basic-dropdown'>
@@ -147,20 +151,20 @@ $count = $result->num_rows;
                                     echo '</tr>';
                                 }
                                 echo '</tbody>';
-                        } else {
-                            echo "<tr> <td colspan='2'> Nessuna riunione programmata per l'utente </td></tr>";
-                          }
+                            } else {
+                                echo "<tr> <td colspan='2'> Nessuna riunione programmata per l'utente </td></tr>";
+                            }
                             ?>
                         </table>
                     </div>
                 </div>
 
                 <?php
-                    if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore') {
-                        echo '<div class="card-footer">';
-                        echo '<button type="button" class="btn btn-primary">Crea Riunione</button>';
-                        echo '</div>';
-                    }
+                if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore') {
+                    echo '<div class="card-footer">';
+                    echo '<button type="button" class="btn btn-primary">Crea Riunione</button>';
+                    echo '</div>';
+                }
                 ?>
             </div>
         </div>
