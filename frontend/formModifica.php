@@ -5,9 +5,11 @@ $riunioni = riunioniCreate($cid,$email);
 <script>
 $(document).ready(function(){
 	$('#riunione').change(function(){
+		$('#riunione option[value!='+$(this).val()+']').hide();
 		var url = 'backend/carica_dettagli.php?id=' + $(this).val();
 		$('#details').load(url);
 	});
+	
 	
 });
 
@@ -19,8 +21,45 @@ $(function() {
         }
     });
 		
-
 });
+
+$(function () {
+    $('#modulo').submit(function (e) {
+		e.preventDefault();
+		$.ajax({
+			type: 'POST',
+			url: 'backend/check_modifica.php?id=' +$('#riunione').val(),
+			data: $('#modulo').serialize(),
+			success: function (data) {
+				var json = $.parseJSON(data);
+
+				if(json.status=== 'error'){
+					$("#errore_1").html(json.errors[0]);
+					$("#errore_2").html(json.errors[1]);
+
+					return false;
+				}
+				if(json.status==='success'){
+					localStorage.setItem('alert',true);
+					window.location.reload();
+			
+				}
+			}
+		});
+    });
+});
+
+$( function () {
+		if(localStorage.getItem("alert")){
+			localStorage.removeItem("alert");
+            $('#successo').html("Riunione modificata correttamente"); 
+			$("#successo").show();
+			$('#successo').delay(4000).fadeOut('slow');
+        }
+    } 
+);
+
+
 </script>
 <div class="content-body">
 	<div class="row page-titles mx-0">
@@ -35,7 +74,7 @@ $(function() {
                                 <div class="col-auto my-1">
                                     <label class="mr-sm-2">Riunione</label>
                                     <select class="custom-select mr-sm-2" name="riunione" id="riunione" required>
-                                        <option selected="selected" value="0">Seleziona Riunione...</option>
+                                        <option selected="selected" value="0" hidden>Seleziona Riunione...</option>
                                             <?php 
 											echo $riunioni;											
 											?>

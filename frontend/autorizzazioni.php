@@ -30,10 +30,8 @@ $(function () {
         success: function (data) {
 			var json = $.parseJSON(data);
 			if(json.status==='success'){
-				$("#modulo1")[0].reset();
-				$('#successo').html("Utente autorizzato correttamente"); 
-				$("#successo").show();
-				$('#successo').delay(5000).fadeOut('slow');
+				localStorage.setItem('alertAut',true);
+				window.location.reload();
 			}
 		}
       });
@@ -50,15 +48,33 @@ $(function () {
         success: function (data) {
 			var json = $.parseJSON(data);
 			if(json.status==='success'){
-				$("#modulo2")[0].reset();
-				$('#revocato').html("Autorizzazione revocata correttamente"); 
-				$("#revocato").show();
-				$('#revocato').delay(5000).fadeOut('slow');
+				localStorage.setItem('alertRev',true);
+				window.location.reload();
 			}
 		}
       });
     });
   });
+
+$( function () {
+		if(localStorage.getItem("alertAut")){
+			localStorage.removeItem("alertAut");
+            $('#successo').html("Utente autorizzato correttamente"); 
+			$("#successo").show();
+			$('#successo').delay(3000).fadeOut('slow');
+        }
+    } 
+);
+
+$( function () {
+		if(localStorage.getItem("alertRev")){
+			localStorage.removeItem("alertRev");
+            $('#revocato').html("Autorizzazione revocata correttamente"); 
+			$("#revocato").show();
+			$('#revocato').delay(3000).fadeOut('slow');
+        }
+    } 
+);
 </script>
 
 <div class="content-body">
