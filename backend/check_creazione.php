@@ -12,10 +12,11 @@ $oraInizio = $_POST['startTime'];
 $oraFine = $_POST['endTime'];
 $partecipanti = $_POST['partecipanti'];
 $email = $_SESSION['email'];
+$id = newId($cid);
 
 $errors = array();
 
-if(isOccupied($cid,$oraInizio,$oraFine,$sala,$data)){
+if(isOccupied($cid,$oraInizio,$oraFine,$sala,$data,$id)){
 	$errors[] = "La sala è già occupata in questo orario!";
 }
 
@@ -27,8 +28,6 @@ if(count($errors) > 0){
     echo json_encode(array('status' => 'error', 'errors' => $errors));
 	
 } else {
-	
-	$id = newId($cid);
 	
 	$riunione = "INSERT INTO riunioni (id, organizzatore, data_riunione, ora, salariunioni, dipartimento, tema, durata)
 				VALUES ('$id', '$email', '$data', '$oraInizio', '$sala', '$dipartimento', '$tema', '$oraFine')";
