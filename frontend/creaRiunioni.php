@@ -144,7 +144,7 @@ $(document).ready(function(){
                                                 <select class="custom-select mr-sm-2" name="sala" id="sala" required>
                                                     <option selected="selected" value="0">Seleziona Sala...</option>
                                                 </select>
-												<label class="mr-sm-2" style="" id="capienza"></label>
+												<label class="mr-sm-2" id="capienza"></label>
                                             </div>
                                         </div>
 										<div class="form-row align-items-center" style="margin-top: 20px;">
