@@ -330,4 +330,23 @@ function isBusy($cid,$partecipante,$startTime,$endTime,$data,$id)
 		return false;
 	}
 }
+
+function direttori($cid) {
+	$query = "SELECT * FROM utenti WHERE ruolo = 'direttore'";
+
+	$result = $cid->query($query);
+
+	return $result;
+	
+}
+
+function numAutorizzati($cid, $direttore) {
+
+	$query = "SELECT * FROM utenti WHERE data_autorizzazione IS NOT NULL AND direttore = '$direttore'";
+
+	$result = $cid->query($query);
+	$count = $result->num_rows;
+
+	return $count;
+}
 ?>
