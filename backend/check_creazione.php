@@ -25,7 +25,7 @@ if((count($partecipanti)+1)>capienzaSala($cid,$sala)) {
 }
 
 foreach($partecipanti as $partecipante){
-	if(isBusy($cid,$partecipante,$data,$oraInizio,$oraFine)) {
+	if(isBusy($cid,$partecipante,$data,$oraInizio,$oraFine,$id)) {
 		$errors[] = "L'utente $partecipante partecipa già ad un'altra riunione in questa data e ora!";
 		break;
 	}
