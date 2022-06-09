@@ -7,12 +7,7 @@ if (!isset($_SESSION['email'])) {
 
 $email = $_SESSION['email'];
 
-$query = "SELECT salariunioni, id, tema, data_riunione, ora, durata, organizzatore FROM riunioni, sale_riunioni 
-WHERE nome = salariunioni 
-ORDER BY salariunioni, data_riunione, ora desc";
-
-$result = $cid->query($query);
-
+$sale = saleriunioni($cid);
 $riunionidir = creaDirettore($cid);
 $riunioniaut = creaAutorizzato($cid);
 $autorizzati = autorizzati($cid);
@@ -41,7 +36,7 @@ $autorizzati = autorizzati($cid);
                                 <tbody>
 
                                     <?php
-                                    while ($row = $result->fetch_assoc()) {
+                                    while ($row = $sale->fetch_assoc()) {
                                         echo "<tr>
                                     <td>" . $row['salariunioni'] . "</td>
                                     <td>" . $row['id'] . "</td>

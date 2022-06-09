@@ -5,15 +5,12 @@ if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] != 'direttore' && (!isset($_
 
 $email = $_SESSION['email'];
 
-$query = "SELECT * FROM riunioni 
-		  WHERE organizzatore='$email'
-		  AND data_riunione > CURDATE()
-          OR (data_riunione = CURDATE() AND ora > TIME(NOW()))
-		  ORDER BY data_riunione, ora";
+$usage = 0;
+$riunioni = riunioniCreate($cid,$email,$usage);
 
-$result = $cid->query($query);
-$count = $result->num_rows;
+$count = $riunioni->num_rows;
 ?>
+
 <script>
 function confirmationDelete(anchor)
 {
@@ -45,7 +42,7 @@ function confirmationDelete(anchor)
 										</tr>
 										</thead>
 										<tbody>";
-									while ($row = $result->fetch_assoc()) {
+									while ($row = $riunioni->fetch_assoc()) {
 										$passed = date('Ymd') > date('Ymd', strtotime($row['data_riunione']));
 										if (!$passed) {
 										echo "<tr>

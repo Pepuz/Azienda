@@ -7,11 +7,9 @@ if (!isset($_SESSION['email'])) {
 
 $email = $_SESSION['email'];
 
-$query = "SELECT partecipazione, tema, data_riunione, ora, salariunioni, id, motivazione, durata, organizzatore FROM partecipa JOIN riunioni 
-		WHERE riunione=id AND partecipante='$email' ORDER BY data_riunione, ora";
+$numriunioni = riunioni($cid, $email);
 
-$result = $cid->query($query);
-$count = $result->num_rows;
+$count = $numriunioni->num_rows;
 
 ?>
 
@@ -44,7 +42,7 @@ $count = $result->num_rows;
                                  </thead>
                                  <tbody>";
 
-                                while ($row = $result->fetch_assoc()) {
+                                while ($row = $numriunioni->fetch_assoc()) {
                                     $passed = date('Ymd') > date('Ymd', strtotime($row['data_riunione']));
                                     echo "<tr>
                                             <td>" . $row['tema'] . "</td>
