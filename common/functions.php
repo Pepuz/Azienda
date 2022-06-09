@@ -285,7 +285,7 @@ function dettagliRiunione($cid,$id)
 
 }
 
-function isBusy($cid,$partecipante,$startTime,$endTime,$data)
+function isBusy($cid,$partecipante,$startTime,$endTime,$data,$id)
 {
 	$query = "SELECT * FROM partecipa JOIN riunioni 
 			WHERE partecipa.riunione = riunioni.id AND partecipante = '$partecipante'
@@ -295,7 +295,7 @@ function isBusy($cid,$partecipante,$startTime,$endTime,$data)
 						'$startTime' BETWEEN ora AND durata OR
 						'$endTime' BETWEEN ora AND durata
 				) 
-			AND data_riunione = '$data'";
+			AND data_riunione = '$data' AND id <> '$id'";
 
 	$result = $cid->query($query);
 	
