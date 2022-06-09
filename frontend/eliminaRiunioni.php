@@ -1,8 +1,4 @@
 <?php
-if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] != 'direttore' && (!isset($_SESSION['data_autorizzazione']))) {
-	redirect("frontend/page-error.html");
-}
-
 $email = $_SESSION['email'];
 
 $usage = 0;
