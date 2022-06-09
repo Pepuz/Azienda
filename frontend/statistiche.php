@@ -15,7 +15,7 @@ $result = $cid->query($query);
 
 $riunionidir = creaDirettore($cid);
 $riunioniaut = creaAutorizzato($cid);
-$utentiaut = trovaAutorizzati($cid);
+$autorizzati = autorizzati($cid);
 
 ?>
 
@@ -76,7 +76,7 @@ $utentiaut = trovaAutorizzati($cid);
                                 <tbody>
 
                                     <?php
-                                    while ($row = $utentiaut->fetch_assoc()) {
+                                    while ($row = $autorizzati->fetch_assoc()) {
                                         echo "<tr>
                                     <td>" . $row['email'] . "</td>
                                     <td>" . $row['ruolo'] . "</td>
