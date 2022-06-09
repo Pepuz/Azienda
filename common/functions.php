@@ -1,6 +1,5 @@
 <?php
 
-
 function isUser($cid, $email, $pwd)
 {
   $query = "SELECT * FROM utenti WHERE email='$email' and password='$pwd'";
@@ -163,12 +162,12 @@ function redirect($url)
     header('Location: ' . $url);
     exit;
   } else {
-    echo '<script type="text/javascript">';
-    echo 'window.location.href="' . $url . '";';
-    echo '</script>';
-    echo '<noscript>';
-    echo '<meta http-equiv="refresh" content="0;url=' . $url . '" />';
-    echo '</noscript>';
+    echo '<script type="text/javascript">
+    	window.location.href="' . $url . '";
+    	</script>
+    	<noscript>
+    	<meta http-equiv="refresh" content="0;url=' . $url . '" />
+    	</noscript>';
     exit;
   }
 }
@@ -184,7 +183,7 @@ function notAuth($cid)
 
 function autorizzati($cid)
 {
-	$query = "SELECT * FROM utenti WHERE data_autorizzazione IS NOT NULL AND ruolo <> 'direttore'";
+	$query = "SELECT * FROM utenti WHERE data_autorizzazione IS NOT NULL";
 	
 	$result = $cid->query($query);
 	
@@ -249,7 +248,7 @@ function listaPartecipanti($cid,$id,$email)
 	return $partecipanti;
 }
 
-function riunioniCreate($cid,$email)
+function riunioniCreate($cid,$email,$usage)
 {
 	$query = "SELECT * FROM riunioni WHERE organizzatore = '$email'
 				AND data_riunione > CURDATE()
@@ -258,14 +257,18 @@ function riunioniCreate($cid,$email)
 	
 	$result = $cid->query($query);
 	
-	$riunioni = '';
+	if ($usage == 0) {
+		return $result;
+	} else {
+		$riunioni = '';
 	
-	while($row = $result->fetch_assoc())
-	{
-		$riunioni .= "<option value=\"".$row['id']."\">".$row['id'].", " . $row['tema'] ."</option>";
-	}
-	
-	return $riunioni;
+		while($row = $result->fetch_assoc())
+		{
+			$riunioni .= "<option value=\"".$row['id']."\">".$row['id'].", " . $row['tema'] ."</option>";
+		}
+		
+		return $riunioni;
+		}
 }
 
 function dettagliRiunione($cid,$id)
@@ -285,27 +288,23 @@ function dettagliRiunione($cid,$id)
 
 }
 
-function isBusy($cid,$partecipante,$startTime,$endTime,$data,$id)
-{
-	$query = "SELECT * FROM partecipa JOIN riunioni 
-			WHERE partecipa.riunione = riunioni.id AND partecipante = '$partecipante'
-			AND (
-						ora BETWEEN '$startTime' AND '$endTime' OR
-						durata BETWEEN '$startTime' AND '$endTime' OR
-						'$startTime' BETWEEN ora AND durata OR
-						'$endTime' BETWEEN ora AND durata
-				) 
-			AND data_riunione = '$data' AND id <> '$id'";
+function riunioni($cid, $email) {
+	$query = "SELECT partecipazione, tema, data_riunione, ora, salariunioni, id, motivazione, durata, organizzatore FROM partecipa JOIN riunioni 
+		WHERE riunione=id AND partecipante='$email' ORDER BY data_riunione, ora";
 
 	$result = $cid->query($query);
-	
-	$count = $result->num_rows;
-	
-	if($count!=0){
-		return true;
-		
-	} else {
-		return false;
-	}
+
+	return $result;
 }
+
+function saleriunioni($cid) {
+	$query = "SELECT salariunioni, id, tema, data_riunione, ora, durata, organizzatore FROM riunioni JOIN sale_riunioni 
+			WHERE nome = salariunioni 
+			ORDER BY salariunioni, data_riunione, ora DESC";
+
+	$result = $cid->query($query);
+
+	return $result;
+}
+
 ?>
