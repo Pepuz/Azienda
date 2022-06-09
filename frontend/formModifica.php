@@ -36,7 +36,8 @@ $(function () {
 				if(json.status=== 'error'){
 					$("#errore_1").html(json.errors[0]);
 					$("#errore_2").html(json.errors[1]);
-
+					$("#errore_3").html(json.errors[2]);
+					
 					return false;
 				}
 				if(json.status==='success'){
@@ -54,7 +55,7 @@ $( function () {
 			localStorage.removeItem("alert");
             $('#successo').html("Riunione modificata correttamente"); 
 			$("#successo").show();
-			$('#successo').delay(4000).fadeOut('slow');
+			$('#successo').delay(3000).fadeOut('slow');
         }
     } 
 );
@@ -83,7 +84,8 @@ $( function () {
 							</div>
 							<div id="details"></div>
 							<span id="errore_1" style='color:red;'></span></br>
-							<span id="errore_2" style='color:red;'></span>
+							<span id="errore_2" style='color:red;'></span></br>
+							<span id="errore_3" style='color:red;'></span>
 								<div class="form-group row" style="margin-top:30px;">
                                     <div class="col-lg-8 ml-auto">
                                         <button type="submit" class="btn btn-primary" id="modifica">Modifica Riunione</button>
