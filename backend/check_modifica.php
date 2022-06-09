@@ -55,6 +55,16 @@ if(count($errors) > 0){
 		}
 	}
 	
+	foreach($partecipanti as $partecipante){
+		
+		if(!in_array($partecipante, $partecipanti_new)){
+			$elimina = "DELETE FROM partecipa 
+						WHERE partecipante = '$partecipante' AND riunione = '$id'";
+			
+			$delPar = $cid->query($elimina);
+		}
+	}
+	
 	echo json_encode(array('status' => 'success'));
 	
 }
