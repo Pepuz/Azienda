@@ -66,7 +66,7 @@ $(function () {
 					return false;
 				}
 				if(json.status==='success'){
-					sessionStorage.setItem('reload',true);
+					localStorage.setItem('alert',true);
 					window.location.reload();
 			
 				}
@@ -84,10 +84,25 @@ $(document).ready(function() {
 	  $(this).val($(this).val().substr(0, 1).toUpperCase() + $(this).val().substr(1).toLowerCase());
 	});
 });
+
+$( function () {
+		if(localStorage.getItem("alert")){
+			localStorage.removeItem("alert");
+            $('#successo').html("Utente registrato correttamente"); 
+			$("#successo").show();
+			$('#successo').delay(3000).fadeOut('slow');
+        }
+    } 
+);  
+
+$(document).ready(function(){
+    $(window).scrollTop(0);
+});
 </script>
 
 <div class="content-body">
 	<div class="row page-titles mx-0">
+	<div class="alert alert-success" id="successo" style="display:none;"></div>
 		<div class="col-lg-12">   
 			<div class="login-form-bg h-100">
 				<div class="container h-100">
@@ -99,7 +114,7 @@ $(document).ready(function() {
 										
 											<h4>Registra utente</h4>
 				
-										<form class="mt-5 mb-5 login-input" id="registrazione">
+										<form autocomplete="off" class="mt-5 mb-5 login-input" id="registrazione">
 											<div class="form-group">
 												<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>
 											</div>
