@@ -215,15 +215,6 @@ function creaAutorizzato($cid)
   return $count;
 }
 
-function trovaAutorizzati($cid) {
-  $query = "SELECT DISTINCT email, ruolo, dipartimento FROM utenti
-  WHERE data_autorizzazione is not NULL";
-
-  $result = $cid->query($query);
-
-  return $result;
-}
-
 function emailExists($cid,$email)
 {
 	$query = "SELECT email FROM utenti WHERE email = '$email'";
