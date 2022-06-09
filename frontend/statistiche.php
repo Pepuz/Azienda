@@ -60,6 +60,19 @@ $autorizzati = autorizzati($cid);
                                     </tr>
                                 </tfoot>
                             </table>
+                            <tbody>
+                                    <?php
+                                    while ($row = $direttori->fetch_assoc()) {
+                                        $numautorizzati = numAutorizzati($cid, $row['email']);
+
+                                        echo "<tr>
+                                            <td>" . $row['cognome'] . " " . $row['nome'] . "</td>
+                                            <td>" . $numautorizzati . "</td>
+                                        </tr>";
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
                             <table class="table table-striped table-bordered zero-configuration">
                                 <thead>
                                     <tr>
