@@ -88,6 +88,7 @@ $(function () {
 			if(json.status=== 'error'){
 				$("#errore_1").html(json.errors[0]);
 				$("#errore_2").html(json.errors[1]);
+				$("#errore_3").html(json.errors[2]);
 
 				return false;
 			}
@@ -106,7 +107,7 @@ $( function () {
 			localStorage.removeItem("alert");
             $('#successo').html("Riunione creata correttamente"); 
 			$("#successo").show();
-			$('#successo').delay(4000).fadeOut('slow');
+			$('#successo').delay(3000).fadeOut('slow');
         }
     } 
 );  
@@ -144,7 +145,7 @@ $(document).ready(function(){
                                                 <select class="custom-select mr-sm-2" name="sala" id="sala" required>
                                                     <option selected="selected" value="0">Seleziona Sala...</option>
                                                 </select>
-												<label class="mr-sm-2" id="capienza"></label>
+												<label class="mr-sm-2" style="" id="capienza"></label>
                                             </div>
                                         </div>
 										<div class="form-row align-items-center" style="margin-top: 20px;">
@@ -201,7 +202,8 @@ $(document).ready(function(){
 										</div>
 										
 										<span id="errore_1" style='color:red;'></span></br>
-										<span id="errore_2" style='color:red;'></span>
+										<span id="errore_2" style='color:red;'></span></br>
+										<span id="errore_3" style='color:red;'></span>
 										<div class="form-group row" style="margin-top:30px;">
                                             <div class="col-lg-8 ml-auto">
                                                 <button type="submit" class="btn btn-primary" id="crea">Crea Riunione</button>
