@@ -11,6 +11,7 @@ $sale = saleriunioni($cid);
 $riunionidir = creaDirettore($cid);
 $riunioniaut = creaAutorizzato($cid);
 $autorizzati = autorizzati($cid);
+$direttori = direttori($cid);
 
 ?>
 
@@ -60,7 +61,14 @@ $autorizzati = autorizzati($cid);
                                     </tr>
                                 </tfoot>
                             </table>
-                            <tbody>
+                            <table class="table table-striped table-bordered zero-configuration">
+                                <thead>
+                                    <tr>
+                                        <th>Direttori</th>
+                                        <th>Numero Utenti Autorizzati</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                     <?php
                                     while ($row = $direttori->fetch_assoc()) {
                                         $numautorizzati = numAutorizzati($cid, $row['email']);
