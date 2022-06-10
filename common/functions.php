@@ -290,7 +290,18 @@ function dettagliRiunione($cid,$id)
 
 function riunioni($cid, $email) {
 	$query = "SELECT partecipazione, tema, data_riunione, ora, salariunioni, id, motivazione, durata, organizzatore FROM partecipa JOIN riunioni 
-		WHERE riunione=id AND partecipante='$email' ORDER BY data_riunione, ora";
+		WHERE riunione=id AND partecipante='$email' AND data_riunione >= CURDATE()
+		ORDER BY data_riunione, ora";
+
+	$result = $cid->query($query);
+
+	return $result;
+}
+
+function passate($cid, $email) {
+	$query = "SELECT partecipazione, tema, data_riunione, ora, salariunioni, id, motivazione, durata, organizzatore FROM partecipa JOIN riunioni 
+	WHERE riunione=id AND partecipante='$email' AND data_riunione < CURDATE()
+	ORDER BY data_riunione, ora";
 
 	$result = $cid->query($query);
 
