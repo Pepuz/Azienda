@@ -131,7 +131,7 @@ $count = $riunioni->num_rows;
                                         }
                                     } else {
                                     
-                                            echo "<td></td>
+                                            echo "<td><a href='index.php?op=eliminaRiunioni'><button type='button' class='btn mb-1 btn-danger'>Elimina</button></a></td>
                                             <td><a href='index.php?op=formModifica'><button type='button' class='btn btn-primary'>Modifica</button></a></td>";
                                         
                                     }
