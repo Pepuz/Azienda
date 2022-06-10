@@ -27,11 +27,12 @@ $direttori = direttori($cid);
                                 <thead>
                                     <tr>
                                         <th>Sala Riunioni</th>
-                                        <th>Riunione</th>
-                                        <th>Tema</th>
-                                        <th>Data</th>
-                                        <th>Ora Inizio</th>
-                                        <th>Ora Fine</th>
+                                        <th>Dipartimento</th>
+                                        <th>Posti Disponibili</th>
+                                        <th>Tavoli Disponibili</th>
+                                        <th>Computer</th>
+                                        <th>Lavagne</th>
+                                        <th>Proiettori</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,27 +40,18 @@ $direttori = direttori($cid);
                                     <?php
                                     while ($row = $sale->fetch_assoc()) {
                                         echo "<tr>
-                                    <td>" . $row['salariunioni'] . "</td>
-                                    <td>" . $row['id'] . "</td>
-                                    <td>" . $row['tema'] . "</td>
-                                    <td>" . $row['data_riunione'] . "</td>
-                                    <td>" . $row['ora'] . "</td>
-                                    <td>" . $row['durata'] . "</td>
+                                    <td>" . $row['salariunione'] . "</td>
+                                    <td>" . $row['dipartimento'] . "</td>
+                                    <td>" . $row['capienza'] . "</td>
+                                    <td>" . $row['n_tavoli'] . "</td>
+                                    <td>" . $row['n_computer'] . "</td>
+                                    <td>" . $row['n_lavagne'] . "</td>
+                                    <td>" . $row['n_proiettori'] . "</td>
                                     </tr>";
                                     }
                                     ?>
 
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Sala Riunioni</th>
-                                        <th>Riunione</th>
-                                        <th>Tema</th>
-                                        <th>Data</th>
-                                        <th>Ora Inizio</th>
-                                        <th>Ora Fine</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                             <table class="table table-striped table-bordered zero-configuration">
                                 <thead>
