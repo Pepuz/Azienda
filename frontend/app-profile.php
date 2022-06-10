@@ -72,7 +72,7 @@ $row = $result->fetch_assoc();
                     <div class="card-body">
                         <h4 class="card-title">Opzioni</h4>
                         <div class="table-responsive">
-                        <a href='index.php?op=modifica-profilo'><button type='button' class='btn btn-primary'>Modifica</button>
+                        <a href='frontend/modifica-profilo.php'><button type='button' class='btn btn-primary'>Modifica password</button>
                         </div>
                     </div>
                 </div>
