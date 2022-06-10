@@ -65,6 +65,7 @@ session_start();
                                     }
                                     ?>
                                 </form>
+								<p class="mt-5 login-form__footer">Non hai un account? <a href="registrazione.php" class="text-primary">Registrati</a></p>
                             </div>
                         </div>
                     </div>
