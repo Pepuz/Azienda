@@ -1,10 +1,33 @@
-<?php
-if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] != 'direttore') {
-	redirect("frontend/page-error.html");
-}
+<!DOCTYPE html>
+<html class="h-100" lang="en">
 
-?>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Registrazione</title>
+    <link rel="icon" type="image/png" href="../images/favicon.png">
+    <link href="../css/style.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<link href="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
 
+</head>
+
+<body class="h-100">
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
 <script>
 $( function() {
   $( "#data" ).datepicker({
@@ -55,7 +78,7 @@ $(function () {
 		e.preventDefault();
 		$.ajax({
 			type: 'POST',
-			url: 'backend/check_registrazione.php',
+			url: '../backend/check_registrazione.php',
 			data: $('#registrazione').serialize(),
 			success: function (data) {
 				var json = $.parseJSON(data);
@@ -66,8 +89,7 @@ $(function () {
 					return false;
 				}
 				if(json.status==='success'){
-					localStorage.setItem('alert',true);
-					window.location.reload();
+					window.location.href = "login.php";
 			
 				}
 			}
@@ -85,19 +107,6 @@ $(document).ready(function() {
 	});
 });
 
-$( function () {
-		if(localStorage.getItem("alert")){
-			localStorage.removeItem("alert");
-            $('#successo').html("Utente registrato correttamente"); 
-			$("#successo").show();
-			$('#successo').delay(3000).fadeOut('slow');
-        }
-    } 
-);  
-
-$(document).ready(function(){
-    $(window).scrollTop(0);
-});
 </script>
 
 <div class="content-body">
@@ -164,7 +173,13 @@ $(document).ready(function(){
 	</div>
 </div>
 
+<script src="../plugins/common/common.min.js"></script>
+<script src="../js/custom.min.js"></script>
+<script src="../plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
 
+</body>
+
+</html>
 
 
 
