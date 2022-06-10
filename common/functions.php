@@ -298,9 +298,9 @@ function riunioni($cid, $email) {
 }
 
 function saleriunioni($cid) {
-	$query = "SELECT salariunioni, id, tema, data_riunione, ora, durata, organizzatore FROM riunioni JOIN sale_riunioni 
-			WHERE nome = salariunioni 
-			ORDER BY salariunioni, data_riunione, ora DESC";
+	$query = "SELECT * FROM strumentazioni JOIN sale_riunioni 
+			WHERE nome = salariunione 
+			ORDER BY salariunione";
 
 	$result = $cid->query($query);
 
