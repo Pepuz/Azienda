@@ -8,7 +8,8 @@
                     <span class="nav-text">Riunioni</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li class="active"><a href="index.php?op=riunioni">Lista Riunioni</a></li>
+                    <li class="active"><a href="index.php?op=riunioni">Riunioni Programmate</a></li>
+                    <li class="active"><a href="index.php?op=passate">Riunioni Passate</a></li>
                 
                 <?php
                 if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'direttore' || (isset($_SESSION['data_autorizzazione']))) {
