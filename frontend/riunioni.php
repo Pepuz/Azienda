@@ -7,9 +7,9 @@ if (!isset($_SESSION['email'])) {
 
 $email = $_SESSION['email'];
 
-$numriunioni = riunioni($cid, $email);
+$riunioni = riunioni($cid, $email);
 
-$count = $numriunioni->num_rows;
+$count = $riunioni->num_rows;
 
 ?>
 
@@ -22,7 +22,7 @@ $count = $numriunioni->num_rows;
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">
-                        <h4>Lista Riunioni</h4>
+                        <h4>Riunioni Programmate</h4>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped">
@@ -42,25 +42,17 @@ $count = $numriunioni->num_rows;
                                  </thead>
                                  <tbody>";
 
-                                while ($row = $numriunioni->fetch_assoc()) {
-                                    $passed = date('Ymd') > date('Ymd', strtotime($row['data_riunione']));
+                                while ($row = $riunioni->fetch_assoc()) {
                                     echo "<tr>
                                             <td>" . $row['tema'] . "</td>
                                             <td>" . $row['salariunioni'] . "</td>
                                             <td>" . $row['data_riunione'] . "</td>
                                             <td>" . $row['ora'] . "</td>
-                                            <td>" . $row['durata'] . "</td>";
-                                    if ($passed) {
-                                        echo "<td><span class='label label-pill label-danger'>Passata</span></td>";
-                                    } else {
-                                        echo "<td><span class='label label-pill label-success'>Programmata</span></td>";
-                                    }
+                                            <td>" . $row['durata'] . "</td>
+                                            <td><span class='label label-pill label-success'>Programmata</span></td>";
 
                                     if ($row['organizzatore'] != $email) {
-                                        if (!isset($row['partecipazione']) && $passed) {
-                                            echo "<td><span class='label label-danger'>Non Accettata</span></td>
-                                            <td></td>";
-                                        } elseif (!isset($row['partecipazione']) && !$passed) {
+                                        if (!isset($row['partecipazione'])) {
                                             echo '<td><a href="backend/accetta_riunioni.php?id=' . $row['id'] . '"><button type="button" class="btn mb-1 btn-info">Accetta Invito</button></a></td>';
 
                                             echo "<td>    
@@ -138,19 +130,16 @@ $count = $numriunioni->num_rows;
                                                     </td>";
                                         }
                                     } else {
-                                        if (!$passed) {
-                                            echo '<td><a href="index.php?op=eliminaRiunioni"><button type="button" class="btn mb-1 btn-danger">Elimina</button></a></td>';
-                                            echo '<td><a href="index.php?op=formModifica"><button type="button" class="btn btn-primary">Modifica</button></a></td>';
-                                        } else {
-                                            echo "<td></td>";
-                                            echo "<td><button type='button' class='btn btn-primary' disabled>Modifica</button></td>";
-                                        }
+                                    
+                                            echo "<td></td>
+                                            <td><a href='index.php?op=formModifica'><button type='button' class='btn btn-primary'>Modifica</button></a></td>";
+                                        
                                     }
                                     echo '</tr>';
                                 }
                                 echo '</tbody>';
                             } else {
-                                echo "<tr> <td colspan='2'> Nessuna riunione programmata per l'utente </td></tr>";
+                                echo "<tr> <td colspan='2'>Nessuna riunione programmata per l'utente </td></tr>";
                             }
                             ?>
                         </table>

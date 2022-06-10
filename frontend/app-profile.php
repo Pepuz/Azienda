@@ -41,7 +41,6 @@ $row = $result->fetch_assoc();
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
@@ -63,6 +62,17 @@ $row = $result->fetch_assoc();
                                     <td><?php echo $row['dipartimento']; ?></td>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Opzioni</h4>
+                        <div class="table-responsive">
+                        <a href='index.php?op=modifica-profilo'><button type='button' class='btn btn-primary'>Modifica</button>
                         </div>
                     </div>
                 </div>
